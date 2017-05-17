@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731725, g: 0.13414745, b: 0.12107873, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -120,11 +120,9 @@ GameObject:
   - component: {fileID: 420117032}
   - component: {fileID: 420117031}
   - component: {fileID: 420117030}
-  - component: {fileID: 420117035}
-  - component: {fileID: 420117036}
-  - component: {fileID: 420117039}
-  - component: {fileID: 420117041}
-  - component: {fileID: 420117040}
+  - component: {fileID: 420117042}
+  - component: {fileID: 420117037}
+  - component: {fileID: 420117038}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -202,7 +200,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &420117035
+--- !u!114 &420117037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -210,10 +208,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 420117029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37577017037dc6246a101369ae6d5589, type: 3}
+  m_Script: {fileID: 11500000, guid: 74efca9a022ce6d48bca73c41094118e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &420117036
+--- !u!114 &420117038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -221,10 +219,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 420117029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8316ce717e00db478c3b74a8676b294, type: 3}
+  m_Script: {fileID: 11500000, guid: d4432acad8b9f3b4fb7e39068b18b147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &420117039
+--- !u!114 &420117042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -232,29 +230,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 420117029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c350039738d4b0439a4fbd11e7328fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &420117040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 420117029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c350039738d4b0439a4fbd11e7328fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &420117041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 420117029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c350039738d4b0439a4fbd11e7328fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 14a38054e9dacee4e94b454bb7da7c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &742297987
@@ -430,7 +406,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420117035}
+      - m_Target: {fileID: 420117038}
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -462,7 +438,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 94e67308f69307346ae813ee33cbee21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e49dfb1304ee8c4bb5da992afc183a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -634,7 +610,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 042aa2e59ae7a1c44ab6fe7a35599d5c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a48eaec000316bc40abd32011a64d1d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -723,7 +699,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420117039}
+      - m_Target: {fileID: 420117037}
         m_MethodName: OpenPopup
         m_Mode: 1
         m_Arguments:
@@ -755,7 +731,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 37fb5281bcc580e4b94ac3179614bab1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37732182bca2f8442ab9fe515ca8ffa0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -823,7 +799,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 133b0b305b518074f947a3dc2e496c85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a65868fa4b8827b4a8d253dafaec0df9, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -891,7 +867,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 28e947bd47eaefb478412491408b9189, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99c27dc4943f1e049b3fe07b93fd5c14, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

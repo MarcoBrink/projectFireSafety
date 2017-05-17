@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Bram/Menu.unity
+    guid: b605cd841cf9d4d409326d0703f2c297
+  - enabled: 1
+    path: Assets/Bram/Popup.unity
+    guid: 16b016ece17c99342ac6fbcd9816ceb8
+  - enabled: 1
+    path: Assets/Bram/Settings.unity
+    guid: 00000000000000000000000000000000
