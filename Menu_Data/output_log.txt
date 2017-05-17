@@ -1,0 +1,87 @@
+Initialize engine version: 5.6.0f3 (497a0f351392)
+GfxDevice: creating device client; threaded=1
+VR: OpenVR Error! OpenVR failed initialization with error code VRInitError_Init_HmdNotFound: "Hmd Not Found (108)"!
+ 
+(Filename:  Line: 1028)
+
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     912 MB
+    Driver:   10.18.10.4358
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\UnityEngine.VR.dll (this message is harmless)
+Loading C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\UnityEngine.VR.dll into Unity Child Domain
+- Completed reload, in  0.278 seconds
+Platform assembly: C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Bakker\Documents\GitHub\VR-Fire-Safety\Menu_Data\Managed\System.dll (this message is harmless)
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initialized touch support.
+VR: OpenVR Error! OpenVR failed initialization with error code VRInitError_Init_HmdNotFound: "Hmd Not Found (108)"!
+ 
+(Filename:  Line: 1028)
+
+VR: OpenVR Error! OpenVR failed initialization with error code VRInitError_Init_HmdNotFound: "Hmd Not Found (108)"!
+ 
+(Filename:  Line: 1028)
+
+UnloadTime: 3.800813 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2abc -> priority: 1 
+  Thread -> id: 24d4 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.389474 ms
+IsolatedStorageException: Could not find file "C:\Users\Bakker\AppData\LocalLow\DefaultCompany\VR-Fire-Safety\demosettings.json".
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean anonymous, FileOptions options) [0x00000] in <filename unknown>:0 
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share) [0x00000] in <filename unknown>:0 
+  at System.IO.File.OpenRead (System.String path) [0x00000] in <filename unknown>:0 
+  at System.IO.StreamReader..ctor (System.String path, System.Text.Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize) [0x00000] in <filename unknown>:0 
+  at System.IO.StreamReader..ctor (System.String path, System.Text.Encoding encoding) [0x00000] in <filename unknown>:0 
+  at System.IO.File.ReadAllText (System.String path, System.Text.Encoding encoding) [0x00000] in <filename unknown>:0 
+  at System.IO.File.ReadAllText (System.String path) [0x00000] in <filename unknown>:0 
+  at SettingManager.LoadSettings () [0x00000] in <filename unknown>:0 
+  at SettingManager.OnEnable () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 583.
+Total: 0.469970 ms (FindLiveObjects: 0.072697 ms CreateObjectMapping: 0.058158 ms MarkObjects: 0.314738 ms  DeleteObjects: 0.022664 ms)
+
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.020571 ms
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 409.
+Total: 3.667391 ms (FindLiveObjects: 0.041480 ms CreateObjectMapping: 0.023092 ms MarkObjects: 0.181744 ms  DeleteObjects: 3.418080 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.540102 ms
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 584.
+Total: 0.384870 ms (FindLiveObjects: 0.042335 ms CreateObjectMapping: 0.025230 ms MarkObjects: 0.286514 ms  DeleteObjects: 0.018388 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.926683 ms
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 409.
+Total: 3.115743 ms (FindLiveObjects: 0.044901 ms CreateObjectMapping: 0.017533 ms MarkObjects: 0.174902 ms  DeleteObjects: 2.877123 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.484937 ms
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 402.
+Total: 0.251448 ms (FindLiveObjects: 0.035921 ms CreateObjectMapping: 0.020526 ms MarkObjects: 0.174474 ms  DeleteObjects: 0.018815 ms)
+
