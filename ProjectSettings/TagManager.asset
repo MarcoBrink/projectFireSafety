@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - EditorObject
+  - Scenario Object
   layers:
   - Default
   - TransparentFX

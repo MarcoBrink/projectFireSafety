@@ -57,6 +57,22 @@ namespace Assets.Scripts.VRScenario
             }
         }
 
+        public bool HasObjectReference
+        {
+            get
+            {
+                bool hasReference = false;
+
+                if (_object == null)
+                {
+                    hasReference = true;
+                }
+
+                return hasReference;
+            }
+            private set{ }
+        }
+
         public string PrefabName { get; set; }
 
         public ScenarioObject(string prefabName, GameObject gameObject)
@@ -73,14 +89,11 @@ namespace Assets.Scripts.VRScenario
             this.PrefabName = prefabName;
         }
 
-        public ScenarioObjectData GetData()
-        {
-            return new ScenarioObjectData(this);
-        }
-
         public void SetObjectReference(GameObject gameObject)
         {
             this._object = gameObject;
+            this._position = gameObject.transform.position;
+            this._rotation = gameObject.transform.rotation;
         }
     }
 
