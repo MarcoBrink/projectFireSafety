@@ -22,6 +22,16 @@ namespace Assets.Scripts.VRScenario
 
                 return this._position;
             }
+
+            set
+            {
+                if (this._object != null)
+                {
+                    this._object.transform.position = value;
+                }
+
+                this._position = value;
+            }
         }
 
         public Quaternion Rotation
@@ -35,42 +45,66 @@ namespace Assets.Scripts.VRScenario
 
                 return this._rotation;
             }
+
+            set
+            {
+                if (this._object != null)
+                {
+                    this._object.transform.rotation = value;
+                }
+
+                this._rotation = value;
+            }
         }
 
-        public int PrefabID { get; set; }
+        public string PrefabName { get; set; }
 
-        public ScenarioObject(int prefabID, GameObject gameObject)
+        public ScenarioObject(string prefabName, GameObject gameObject)
         {
-            this.PrefabID = prefabID;
+            this.PrefabName = prefabName;
             this._object = gameObject;
         }
 
-        public ScenarioObject()
+        public ScenarioObject(string prefabName, Vector3 position, Quaternion rotation)
         {
-
+            this._object = null;
+            this._position = position;
+            this._rotation = rotation;
+            this.PrefabName = prefabName;
         }
 
         public ScenarioObjectData GetData()
         {
             return new ScenarioObjectData(this);
         }
+
+        public void SetObjectReference(GameObject gameObject)
+        {
+            this._object = gameObject;
+        }
     }
 
     [System.Serializable]
     public class ScenarioObjectData
     {
-        
 
-        public int PrefabID { get; private set; }
+        private Vector3Data Position;
+        private QuaternionData Rotation;
+        private string PrefabName;
 
         public ScenarioObjectData(ScenarioObject scenarioObject)
         {
-            this.PrefabID = scenarioObject.PrefabID;
+            this.Position = new Vector3Data(scenarioObject.Position);
+            this.Rotation = new QuaternionData(scenarioObject.Rotation);
+            this.PrefabName = scenarioObject.PrefabName;
         }
 
         public ScenarioObject GetScenarioObject()
         {
-            return new ScenarioObject();
+            Vector3 position = this.Position.GetVector3();
+            Quaternion rotation = this.Rotation.GetQuaternion();
+            ScenarioObject scenarioObject = new ScenarioObject(this.PrefabName, position, rotation);
+            return scenarioObject;
         }
     }
 
@@ -78,7 +112,41 @@ namespace Assets.Scripts.VRScenario
     public class Vector3Data
     {
         private float X;
-        private float YPosition;
-        private float ZPosition;
+        private float Y;
+        private float Z;
+
+        public Vector3Data(Vector3 vector)
+        {
+            this.X = vector.x;
+            this.Y = vector.y;
+            this.Z = vector.z;
+        }
+
+        public Vector3 GetVector3()
+        {
+            return new Vector3(this.X, this.Y, this.Z);
+        }
+    }
+
+    [System.Serializable]
+    public class QuaternionData
+    {
+        private float W;
+        private float X;
+        private float Y;
+        private float Z;
+
+        public QuaternionData(Quaternion quaternion)
+        {
+            this.W = quaternion.w;
+            this.X = quaternion.x;
+            this.Y = quaternion.y;
+            this.Z = quaternion.z;
+        }
+
+        public Quaternion GetQuaternion()
+        {
+            return new Quaternion(this.X, this.Y, this.Z, this.W);
+        }
     }
 }
