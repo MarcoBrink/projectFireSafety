@@ -76,11 +76,11 @@ namespace Assets.Scripts.VRScenario
         {
             get
             {
-                return this.Object;
+                return this._object;
             }
             set
             {
-                this.Object = value;
+                this._object = value;
             }
         }
 

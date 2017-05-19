@@ -11,9 +11,6 @@ public class BoundsProtector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (this.transform.y < -50)
-        {
-            
-        }
+        
 	}
 }
