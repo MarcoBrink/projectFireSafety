@@ -7,26 +7,58 @@ public class CubeScript : MonoBehaviour {
     Rigidbody rb;
     Collider bc;
     Material m;
+
+    bool CanPlace = true;
     void OnEnable()
     {
         ControlScript.OnClicked += Move;
         rb = GetComponent<Rigidbody>();       
         rb.useGravity = false;
         bc = GetComponent<Collider>();
-        bc.enabled = false;
+        bc.isTrigger = true;
+        gameObject.AddComponent<WireframeScript>();
+        WireframeScript wireframe = GetComponent<WireframeScript>();
+        wireframe.render_mesh_normaly = false;
+        wireframe.render_lines_1st = true;
+        wireframe.render_lines_2nd = true;
+        wireframe.render_lines_3rd = true;
+        wireframe.lineColor = Color.green;
+        wireframe.lineWidth = 1;
     }
 
     void OnDisable()
     {
         ControlScript.OnClicked -= Move;
         rb.useGravity = true;
-        bc.enabled = true;
+        bc.isTrigger = false;
         gameObject.AddComponent<EnabledScript>();
+        WireframeScript wireframe = GetComponent<WireframeScript>();
+        wireframe.render_mesh_normaly = true;
+        wireframe.render_lines_1st = false;
+        wireframe.render_lines_2nd = false;
+        wireframe.render_lines_3rd = false;   
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        WireframeScript wireframe = GetComponent<WireframeScript>();
+        wireframe.lineColor = Color.red;
+        CanPlace = false;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        WireframeScript wireframe = GetComponent<WireframeScript>();
+        wireframe.lineColor = Color.green;
+        CanPlace = true;
     }
 
     void Disable()
     {
-        this.enabled = false;
+        if(CanPlace)
+        {
+            this.enabled = false;
+        }       
     }
 
     void Move(ControlScript.MyEvents e)
@@ -34,36 +66,45 @@ public class CubeScript : MonoBehaviour {
         rb.velocity = Vector3.zero;
         if (e == ControlScript.MyEvents.Up)
         {
-            transform.Translate(transform.forward / 10);
+            transform.position += (Vector3.forward / 10);
         }
         if (e == ControlScript.MyEvents.Right)
         {
-            transform.Translate(transform.right / 10);
+            transform.position += (Vector3.right / 10);
         }
         if (e == ControlScript.MyEvents.Down)
         {
-            transform.Translate(transform.forward / 10 * -1);
+            transform.position += (Vector3.forward / 10 * -1);
         }
         if (e == ControlScript.MyEvents.Left)
         {
-            transform.Translate(transform.right / 10 * -1);
+            transform.position += (Vector3.right / 10 * -1);
         }
         if (e == ControlScript.MyEvents.Forward)
         {
-            transform.Translate(transform.up / 10);
+            transform.position += (Vector3.up / 10);
         }
         if (e == ControlScript.MyEvents.Backward)
         {
-            transform.Translate(transform.up / 10 * -1);
+            transform.position += (Vector3.up / 10 * -1);
         }
         if (e == ControlScript.MyEvents.Space)
         {
             Disable();
         }
+        if (e == ControlScript.MyEvents.Shift)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnMouseDown()
     {
-        this.enabled = true;
+        if (!this.enabled) this.enabled = true;
+        else if (GetComponent<EnabledScript>() != null)
+        {
+            this.enabled = false;
+        }
+        else Destroy(this.gameObject);
     }
 }

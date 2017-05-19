@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ControlScript : MonoBehaviour {
-    public enum MyEvents { Up, Right, Down, Left, Forward, Backward, Space }
+    public enum MyEvents { Up, Right, Down, Left, Forward, Backward, Space, Shift }
     public delegate void ClickAction(MyEvents e);
     public static event ClickAction OnClicked;
     public string SelectedResource = "Prefabs/Block";
+
+    Object[] SelectablePrefabs;
+    GameObject CurrentCursor;
+    Vector3 CursorLocation;
+    void Awake()
+    {
+       CursorLocation = GetCursorPosition();
+       SelectablePrefabs = Resources.LoadAll("Prefabs/");
+    }
 
     void Update()
     {
         if(OnClicked == null)
         {
-            Instantiate(Resources.Load(SelectedResource), Vector3.up, new Quaternion());
+            CurrentCursor = (GameObject)Instantiate(Resources.Load(SelectedResource), CursorLocation, new Quaternion());
         }
         if (Input.GetKey(KeyCode.W))
         {
@@ -41,17 +50,37 @@ public class ControlScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnClicked(MyEvents.Space);
+            CursorLocation = GetCursorPosition();
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if(SelectedResource == "Prefabs/Block")
-            {
-                SelectedResource = "Prefabs/Sphere";
-            }
-            else
-            {
-                SelectedResource = "Prefabs/Block";
-            }
+            SelectedResource = "Prefabs/" + GetObjectByName();
+            CursorLocation = GetCursorPosition();
+            OnClicked(MyEvents.Shift);
         }
+    }
+
+    private string GetObjectByName()
+    {
+        for (int i = 0; i < SelectablePrefabs.Length; i++)
+        {
+            if ("Prefabs/" + SelectablePrefabs[i].name == SelectedResource)
+            {
+                if(i+1 < SelectablePrefabs.Length)
+                {
+                    return SelectablePrefabs[i + 1].name;
+                }
+            }
+        }          
+        return SelectablePrefabs[0].name;
+    }
+
+    private Vector3 GetCursorPosition()
+    {
+        if(CurrentCursor != null)
+        {
+            return CurrentCursor.transform.position;
+        }
+        return Vector3.zero;
     }
 }

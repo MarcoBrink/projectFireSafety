@@ -19,24 +19,12 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (!this.Selected)
-            {
-                if (!ThisObject.isKinematic)
-                {
-                    ThisObject.isKinematic = true;
-                }
-                if (!ThisObject.detectCollisions)
-                {
-                    ThisObject.detectCollisions = true;
-                }
-            }
+            
         }
 
         private void OnMouseDown()
         {
-            this.Selected = true;
-            ThisObject.isKinematic = false;
-            ThisObject.detectCollisions = false;
+            ThisObject.Sleep();
         }
 
         private void OnMouseDrag()
@@ -58,9 +46,7 @@ namespace Assets.Scripts
 
         private void OnMouseUpAsButton()
         {
-            this.Selected = false;
-            ThisObject.isKinematic = true;
-            ThisObject.detectCollisions = true;
+            ThisObject.WakeUp();
         }
     }
 }
