@@ -66,10 +66,6 @@ namespace Assets.Scripts.Saving
                 catch (Exception ex)
                 {
                     Debug.Log(ex.Message);
-                    Debug.Log(ex.InnerException);
-                    Debug.Log(ex.Source);
-                    Debug.Log(ex.Data);
-                    Debug.Log(ex.StackTrace);
                 }
                 finally
                 {

@@ -63,15 +63,27 @@ namespace Assets.Scripts.VRScenario
             {
                 bool hasReference = false;
 
-                if (_object == null)
+                if (_object != null)
                 {
                     hasReference = true;
                 }
 
                 return hasReference;
             }
-            private set{ }
         }
+
+        public GameObject Object
+        {
+            get
+            {
+                return this.Object;
+            }
+            set
+            {
+                this.Object = value;
+            }
+        }
+
 
         public string PrefabName { get; set; }
 
@@ -89,11 +101,9 @@ namespace Assets.Scripts.VRScenario
             this.PrefabName = prefabName;
         }
 
-        public void SetObjectReference(GameObject gameObject)
+        public void Destroy()
         {
-            this._object = gameObject;
-            this._position = gameObject.transform.position;
-            this._rotation = gameObject.transform.rotation;
+            GameObject.Destroy(this._object);
         }
     }
 

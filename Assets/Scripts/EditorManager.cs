@@ -26,8 +26,9 @@ public class EditorManager : MonoBehaviour
             string fileName = SaveLoad.GetFileName(savedScenarios[0]);
             CurrentScenario = SaveLoad.LoadSavedScenario(fileName);
             LastSaved = fileName;
-            Debug.Log(fileName);
         }
+
+        LoadScenario();
     }
 	
 	// Update is called once per frame
@@ -45,13 +46,12 @@ public class EditorManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.F9))
             {
-                SaveLoad.LoadSavedScenario(LastSaved);
+                CurrentScenario = SaveLoad.LoadSavedScenario(LastSaved);
+                LoadScenario();
             }
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Test");
-
             float dist = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
             Vector3 MousePos = Input.mousePosition;
 
@@ -67,6 +67,17 @@ public class EditorManager : MonoBehaviour
             ScenarioObject newScenarioObject = new ScenarioObject(CurrentPrefabName, newObject);
 
             CurrentScenario.Objects.Add(newScenarioObject);
+        }
+
+        foreach (ScenarioObject scenarioObject in CurrentScenario.Objects)
+        {
+            if (scenarioObject.HasObjectReference)
+            {
+                if (scenarioObject.Object.transform.position.y < -50)
+                {
+
+                }
+            }
         }
     }
 
@@ -109,7 +120,7 @@ public class EditorManager : MonoBehaviour
                 Quaternion rotation = scenarioObject.Rotation;
 
                 GameObject newObject = Instantiate(prefab, position, rotation);
-                scenarioObject.SetObjectReference(newObject);
+                scenarioObject.Object = newObject;
             }
         }
     }

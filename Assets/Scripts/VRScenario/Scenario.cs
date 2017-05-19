@@ -51,15 +51,14 @@ namespace Assets.Scripts.VRScenario
         {
             Vector2 dimensions = this.Dimensions.GetVector2();
 
-            int objectCount = this.Objects.Length;
-            ScenarioObject[] objects = new ScenarioObject[objectCount - 1];
+            List<ScenarioObject> objects = new List<ScenarioObject>();
 
-            for (int index = 0; index < objectCount; index++)
+            foreach (ScenarioObjectData scenarioObject in this.Objects)
             {
-                objects[index] = this.Objects[index].GetScenarioObject();
+                objects.Add(scenarioObject.GetScenarioObject());
             }
 
-            Scenario scenario = new Scenario(dimensions, objects);
+            Scenario scenario = new Scenario(dimensions, objects.ToArray());
             return scenario;
         }
     }
