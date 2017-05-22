@@ -4,28 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.VRScenario;
 using Assets.Scripts.Saving;
+using Assets.Scripts;
 
 public class EditorManager : MonoBehaviour
 {
 
     private Scenario CurrentScenario;
-    private string LastSaved;
-    public List<GameObject> prefabs;
-    public string CurrentPrefabName = "TestCube";
+    public List<GameObject> Prefabs;
+    public EditorCursor CursorPrefab;
+    private EditorCursor Cursor;
 
     // Use this for initialization
-    void Start () {
-        Uri[] savedScenarios = SaveLoad.GetSavedScenarios();
+    void Start ()
+    {
+        Cursor = Instantiate(CursorPrefab);
+
+        string[] savedScenarios = SaveLoad.GetSavedScenarios();
 
         if (savedScenarios.Length == 0)
         {
-            CurrentScenario = new Scenario(new Vector2(50, 50));
+            CurrentScenario = new Scenario("Test", new Vector2(50, 50));
         }
         else
         {
-            string fileName = SaveLoad.GetFileName(savedScenarios[0]);
-            CurrentScenario = SaveLoad.LoadSavedScenario(fileName);
-            LastSaved = fileName;
+            CurrentScenario = SaveLoad.LoadSavedScenario("test");
         }
 
         LoadScenario();
@@ -38,68 +40,17 @@ public class EditorManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.P))
             {
                 SaveLoad.SaveScenario("test", CurrentScenario);
-                LastSaved = "test";
             }
             else if (Input.GetKeyDown(KeyCode.F5))
             {
-                SaveLoad.SaveScenario(LastSaved, CurrentScenario);
+                SaveLoad.SaveScenario(CurrentScenario.Name, CurrentScenario);
             }
             else if (Input.GetKeyDown(KeyCode.F9))
             {
-                CurrentScenario = SaveLoad.LoadSavedScenario(LastSaved);
+                CurrentScenario = SaveLoad.LoadSavedScenario(CurrentScenario.Name);
                 LoadScenario();
             }
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            float dist = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-            Vector3 MousePos = Input.mousePosition;
-
-            Vector3 trans = new Vector3(MousePos.x, MousePos.y, dist);
-
-            Vector3 pos = Camera.main.ScreenToWorldPoint(trans);
-            Quaternion rot = new Quaternion();
-
-            GameObject prefab = GetPrefab(CurrentPrefabName);
-
-            GameObject newObject = Instantiate(prefab, pos, rot);
-
-            ScenarioObject newScenarioObject = new ScenarioObject(CurrentPrefabName, newObject);
-
-            CurrentScenario.Objects.Add(newScenarioObject);
-        }
-
-        foreach (ScenarioObject scenarioObject in CurrentScenario.Objects)
-        {
-            if (scenarioObject.HasObjectReference)
-            {
-                if (scenarioObject.Object.transform.position.y < -50)
-                {
-
-                }
-            }
-        }
-    }
-
-    GameObject GetPrefab(string prefabName)
-    {
-        GameObject foundPrefab = null;
-
-        foreach (GameObject prefab in prefabs)
-        {
-            if (prefab.name == prefabName)
-            {
-                foundPrefab = prefab;
-                break;
-            }
-        }
-
-        if (foundPrefab == null)
-        {
-            Debug.Log("Prefab not found.");
-        }
-
-        return foundPrefab;
     }
 
     void LoadScenario()
@@ -111,11 +62,13 @@ public class EditorManager : MonoBehaviour
             Destroy(currentObject);
         }
 
+        GameObject floor = GameObject.FindGameObjectWithTag("Floor");
+
         foreach (ScenarioObject scenarioObject in CurrentScenario.Objects)
         {
             if (!scenarioObject.HasObjectReference)
             {
-                GameObject prefab = GetPrefab(scenarioObject.PrefabName);
+                GameObject prefab = PrefabManager.GetPrefab(scenarioObject.PrefabName);
                 Vector3 position = scenarioObject.Position;
                 Quaternion rotation = scenarioObject.Rotation;
 

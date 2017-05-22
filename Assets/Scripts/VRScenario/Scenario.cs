@@ -6,11 +6,13 @@ namespace Assets.Scripts.VRScenario
 {
     public class Scenario
     {
+        public string Name { get; set; }
         public Vector2 Dimensions { get; set; }
         public List<ScenarioObject> Objects { get; set; }
 
-        public Scenario(Vector2 dimensions)
+        public Scenario(string name, Vector2 dimensions)
         {
+            this.Name = name;
             this.Dimensions = dimensions;
             this.Objects = new List<ScenarioObject>();
         }

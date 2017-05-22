@@ -21,20 +21,17 @@ namespace Assets.Scripts.Saving
             }
         }
 
-        public static Uri[] GetSavedScenarios()
+        public static string[] GetSavedScenarios()
         {
             string[] foundFiles = Directory.GetFiles(SaveDirectory);
-            List<Uri> validFiles = new List<Uri>();
+            List<string> validFiles = new List<string>();
 
             foreach (string path in foundFiles)
             {
-                Uri pathUri = new Uri(path);
-
-                string[] file = pathUri.Segments[pathUri.Segments.Length - 1].Split('.'); 
-
-                if (file[file.Length - 1] == ScenarioFileType[0] || file[file.Length - 1] == ScenarioFileType[1])
+                if (Path.GetExtension(path) == ".pvrs")
                 {
-                    validFiles.Add(pathUri);
+                    string filename = Path.GetFileNameWithoutExtension(path);
+                    validFiles.Add(filename);
                 }
             }
 
@@ -104,19 +101,6 @@ namespace Assets.Scripts.Saving
         private static string GetFilePath(string fileName)
         {
             return SaveDirectory + "/" + fileName + ".pvrs";
-        }
-
-        public static string GetFileName(Uri path)
-        {
-            string fileName = "";
-
-            string[] file = path.Segments[path.Segments.Length - 1].Split('.');
-            for (int i = 0; i < file.Length - 1; i++)
-            {
-                fileName += file[i];
-            }
-
-            return fileName;
         }
     }
 }

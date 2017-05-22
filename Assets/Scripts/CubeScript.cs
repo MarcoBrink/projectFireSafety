@@ -18,10 +18,7 @@ public class CubeScript : MonoBehaviour {
         bc.isTrigger = true;
         gameObject.AddComponent<WireframeScript>();
         WireframeScript wireframe = GetComponent<WireframeScript>();
-        wireframe.render_mesh_normaly = false;
-        wireframe.render_lines_1st = true;
-        wireframe.render_lines_2nd = true;
-        wireframe.render_lines_3rd = true;
+        wireframe.render_mesh_normally = false;
         wireframe.lineColor = Color.green;
         wireframe.lineWidth = 1;
     }
@@ -33,10 +30,7 @@ public class CubeScript : MonoBehaviour {
         bc.isTrigger = false;
         gameObject.AddComponent<EnabledScript>();
         WireframeScript wireframe = GetComponent<WireframeScript>();
-        wireframe.render_mesh_normaly = true;
-        wireframe.render_lines_1st = false;
-        wireframe.render_lines_2nd = false;
-        wireframe.render_lines_3rd = false;   
+        wireframe.render_mesh_normally = true;
     }
 
     void OnTriggerStay(Collider other)
