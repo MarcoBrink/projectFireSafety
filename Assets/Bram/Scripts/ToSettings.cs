@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ToSettings : MonoBehaviour {
 
-	// Use this for initialization
+	// Code om de Settings Scene te openen en deze te sluiten
 	public void OpenScene ()
     {
         SceneManager.LoadScene("Settings", LoadSceneMode.Single);
+	//again, moet dit?
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Settings"));
     }
 }
