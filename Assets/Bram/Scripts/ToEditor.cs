@@ -7,7 +7,7 @@ public class ToEditor : MonoBehaviour {
 	//Code om de Scene Editor te openen en deze Scene te sluiten
     public void OpenScene()
     {
-        SceneManager.LoadScene("Editor", LoadSceneMode.Single);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Editor"));
+        SceneManager.LoadScene("EditorUI", LoadSceneMode.Single);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("EditorUI"));
     }
 }
