@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// THIS ENTIRE CLASS IS BASICALLY MAGIC, DON'T ASK ME. JANNICK TOOK THIS FROM THE INTERNET.
+/// </summary>
 public class WireframeScript : MonoBehaviour
 {
-
     public bool render_mesh_normally = true;
     public Color lineColor = Color.green;
     public Color backgroundColor = new Color(0.0f, 0.5f, 0.5f);

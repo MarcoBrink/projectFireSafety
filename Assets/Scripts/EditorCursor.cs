@@ -4,11 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts;
 
+/// <summary>
+/// The cursor used by the editor. Spawns objects.
+/// </summary>
 public class EditorCursor : MonoBehaviour
 {
-
-    private float Range = 25F;
+    /// <summary>
+    /// The speed at which the cursor moves.
+    /// </summary>
     private float MoveSpeed = 0.125F;
+
+    /// <summary>
+    /// The bounds of the current prefab.
+    /// </summary>
     private Bounds prefabBounds
     {
         get
@@ -17,6 +25,7 @@ public class EditorCursor : MonoBehaviour
 
             if (transform.childCount != 0)
             {
+                // The current bounds can be found on the stripped-down version of the prefab.
                 bounds = transform.GetChild(0).GetComponent<Collider>().bounds;
             }
 
@@ -25,6 +34,10 @@ public class EditorCursor : MonoBehaviour
         // Set does nothing because this is technically read-only, but Unity's version of C# doesn't support read-only properties.
         set { }
     }
+
+    /// <summary>
+    /// Whether or not the selected object can be placed here.
+    /// </summary>
     public bool CanPlace
     {
         get
@@ -33,6 +46,7 @@ public class EditorCursor : MonoBehaviour
 
             if (transform.childCount != 0)
             {
+                // Placement is directly linked to the color of the wireframe around the prefab.
                 GameObject cursorObject = transform.GetChild(0).gameObject;
                 WireframeScript wireFrame = cursorObject.GetComponent<WireframeScript>();
                 if (wireFrame.lineColor == Color.green)
@@ -46,6 +60,10 @@ public class EditorCursor : MonoBehaviour
         // A private set because Unity's version of C# doesn't support read-only properties.
         private set { }
     }
+
+    /// <summary>
+    /// The current prefab used by the cursor. Used for placement.
+    /// </summary>
     private GameObject CurrentPrefab;
 
 	/// <summary>
@@ -62,6 +80,10 @@ public class EditorCursor : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Move along the given axis based on input.
+    /// </summary>
+    /// <param name="axis">The input axis to check for movement.</param>
     public void Move(string axis)
     {
         Camera mainCam = Camera.main;
@@ -144,6 +166,10 @@ public class EditorCursor : MonoBehaviour
         return finalPos;
     }
 
+    /// <summary>
+    /// Change to the prefab with the given name.
+    /// </summary>
+    /// <param name="prefabName">The name of the prefab.</param>
     public void ChangePrefab(string prefabName)
     {
         if (transform.childCount != 0)
