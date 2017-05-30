@@ -13,7 +13,7 @@ public class EditorManager : MonoBehaviour
     public List<GameObject> Prefabs;
     public EditorCursor CursorPrefab;
     private EditorCursor EditorCursor;
-    private List<EditorMode> Modes;
+    private Dictionary<string, EditorMode> Modes;
     private EditorMode CurrentMode;
 
     // Use this for initialization
@@ -21,11 +21,11 @@ public class EditorManager : MonoBehaviour
     {
         EditorCursor = Instantiate(CursorPrefab);
 
-        Modes = new List<EditorMode>();
-        Modes.Add(new EditorCursorMode(EditorCursor));
-        Modes.Add(new MoveMode(Camera.main));
+        Modes = new Dictionary<string, EditorMode>();
+        Modes.Add("Cursor", new EditorCursorMode(EditorCursor));
+        Modes.Add("Move", new MoveMode(Camera.main));
 
-        ChangeEditorMode(Modes[0]);
+        ChangeEditorMode("Cursor");
 
         string[] savedScenarios = SaveLoad.GetSavedScenarios();
 
@@ -48,14 +48,14 @@ public class EditorManager : MonoBehaviour
         {
             if (!(CurrentMode is MoveMode))
             {
-                ChangeEditorMode(Modes[1]);
+                ChangeEditorMode("Cursor");
             }
         }
         else
         {
             if (!(CurrentMode is EditorCursorMode))
             {
-                ChangeEditorMode(Modes[0]);
+                ChangeEditorMode("Move");
             }
         }
 
@@ -87,14 +87,14 @@ public class EditorManager : MonoBehaviour
         }
     }
 
-    private void ChangeEditorMode(EditorMode newMode)
+    private void ChangeEditorMode(string modeName)
     {
         if (CurrentMode != null)
         {
             CurrentMode.Disable();
         }
 
-        CurrentMode = newMode;
+        CurrentMode = Modes[modeName];
 
         CurrentMode.Enable();
     }

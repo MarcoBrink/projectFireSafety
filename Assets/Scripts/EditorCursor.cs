@@ -6,6 +6,25 @@ using Assets.Scripts;
 
 public class EditorCursor : MonoBehaviour
 {
+
+    private float Range = 25F;
+    private float MoveSpeed = 0.125F;
+    private Bounds prefabBounds
+    {
+        get
+        {
+            Bounds bounds = new Bounds();
+
+            if (transform.childCount != 0)
+            {
+                bounds = transform.GetChild(0).GetComponent<Collider>().bounds;
+            }
+
+            return bounds;
+        }
+        // Set does nothing because this is technically read-only, but Unity's version of C# doesn't support read-only properties.
+        set { }
+    }
     public bool CanPlace
     {
         get
@@ -43,9 +62,34 @@ public class EditorCursor : MonoBehaviour
         
     }
 
-    
+    public void Move(string axis)
+    {
+        Camera mainCam = Camera.main;
+        Vector3 transformDir = Vector3.zero;
+        if (axis == "Horizontal")
+        {
+            transformDir = mainCam.transform.right;
+            transformDir.y = 0;
+        }
+        else if (axis == "Vertical")
+        {
+            transformDir = mainCam.transform.forward;
+            transformDir.y = 0;
+        }
+        else if (axis == "UpDown")
+        {
+            transformDir = Vector3.up;
+        }
+        transform.Translate(transformDir * MoveSpeed * Input.GetAxis(axis), Space.World);
+    }
 
-    public bool IsAtMouse()
+    
+    /// <summary>
+    /// Check if the cursor is at the current mouse position, within the specified range.
+    /// </summary>
+    /// <param name="range">The range within which the cursor should be to qualify.</param>
+    /// <returns>True if the cursor is at the mouse position, false if it isn't.</returns>
+    public bool IsAtMouse(float range)
     {
         bool atMouse = false;
 
@@ -54,7 +98,7 @@ public class EditorCursor : MonoBehaviour
 
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
-        if (Physics.Raycast(ray, out hit, 500F))
+        if (Physics.Raycast(ray, out hit, range))
         {
             if (hit.transform.root.gameObject.Equals(this.gameObject))
             {
@@ -65,26 +109,39 @@ public class EditorCursor : MonoBehaviour
         return atMouse;
     }
 
-    public void MoveToMouse(float range)
+    /// <summary>
+    /// Get the position fo the cursor after collision with the given collider.
+    /// </summary>
+    /// <param name="collider">The collider with which the cursor has collided.</param>
+    /// <returns>The new position for the cursor after the collision.</returns>
+    private Vector3 GetCollisionPos(Collider collider)
     {
-        Camera mainCamera = Camera.main;
-        Vector3 mousePos = Input.mousePosition;
+        Vector3 cameraPos  = Camera.main.transform.position;
+        Vector3 collisionPos = collider.ClosestPointOnBounds(cameraPos);
 
-        Vector3 newPos = new Vector3();
+        Vector3 head = collisionPos - cameraPos;
+        float dist = head.magnitude;
+        Vector3 dir = head / dist;
+        Debug.Log(dir.ToString());
 
-        RaycastHit hit;
-        Ray ray = mainCamera.ScreenPointToRay(mousePos);
-        if (Physics.Raycast(ray, out hit, range))
-        {
-            newPos = hit.point;
-        }
-        else
-        {
-            mousePos.z = range;
-            newPos = mainCamera.ScreenToWorldPoint(mousePos);
-        }
+        Ray ray = new Ray(transform.position, dir);
+        float hitdist;
+        collider.bounds.IntersectRay(ray, out hitdist);
 
-        this.transform.position = newPos;
+        // The cursor prefab object has layer 8.
+        int layerMask = 1 << 8;
+        layerMask = ~layerMask;
+
+        RaycastHit hitInfo;
+        Physics.Raycast(ray, out hitInfo, hitdist + 1F, layerMask);
+
+        Vector3 offset = Vector3.zero;
+        offset.x = -dir.x * prefabBounds.extents.x;
+        offset.y = -dir.y * prefabBounds.extents.y;
+        offset.z = -dir.z * prefabBounds.extents.z;
+
+        Vector3 finalPos = collisionPos + offset;
+        return finalPos;
     }
 
     public void ChangePrefab(string prefabName)
@@ -118,6 +175,8 @@ public class EditorCursor : MonoBehaviour
 
             WireframeScript wireframe = copy.AddComponent<WireframeScript>();
             wireframe.render_mesh_normally = true;
+
+            copy.layer = 8;
         }
     }
 }
