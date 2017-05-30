@@ -11,7 +11,7 @@ public class CubeScript : MonoBehaviour {
     bool CanPlace = true;
     void OnEnable()
     {
-        ControlScript.OnClicked += Move;
+       // ControlScript.OnClicked += Move;
         rb = GetComponent<Rigidbody>();       
         rb.useGravity = false;
         bc = GetComponent<Collider>();
@@ -25,7 +25,7 @@ public class CubeScript : MonoBehaviour {
 
     void OnDisable()
     {
-        ControlScript.OnClicked -= Move;
+        //ControlScript.OnClicked -= Move;
         rb.useGravity = true;
         bc.isTrigger = false;
         gameObject.AddComponent<EnabledScript>();
@@ -55,42 +55,42 @@ public class CubeScript : MonoBehaviour {
         }       
     }
 
-    void Move(ControlScript.MyEvents e)
-    {
-        rb.velocity = Vector3.zero;
-        if (e == ControlScript.MyEvents.Up)
-        {
-            transform.position += (Vector3.forward / 10);
-        }
-        if (e == ControlScript.MyEvents.Right)
-        {
-            transform.position += (Vector3.right / 10);
-        }
-        if (e == ControlScript.MyEvents.Down)
-        {
-            transform.position += (Vector3.forward / 10 * -1);
-        }
-        if (e == ControlScript.MyEvents.Left)
-        {
-            transform.position += (Vector3.right / 10 * -1);
-        }
-        if (e == ControlScript.MyEvents.Forward)
-        {
-            transform.position += (Vector3.up / 10);
-        }
-        if (e == ControlScript.MyEvents.Backward)
-        {
-            transform.position += (Vector3.up / 10 * -1);
-        }
-        if (e == ControlScript.MyEvents.Space)
-        {
-            Disable();
-        }
-        if (e == ControlScript.MyEvents.Shift)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //void Move(ControlScript.MyEvents e)
+    //{
+    //    rb.velocity = Vector3.zero;
+    //    if (e == ControlScript.MyEvents.Up)
+    //    {
+    //        transform.position += (Vector3.forward / 10);
+    //    }
+    //    if (e == ControlScript.MyEvents.Right)
+    //    {
+    //        transform.position += (Vector3.right / 10);
+    //    }
+    //    if (e == ControlScript.MyEvents.Down)
+    //    {
+    //        transform.position += (Vector3.forward / 10 * -1);
+    //    }
+    //    if (e == ControlScript.MyEvents.Left)
+    //    {
+    //        transform.position += (Vector3.right / 10 * -1);
+    //    }
+    //    if (e == ControlScript.MyEvents.Forward)
+    //    {
+    //        transform.position += (Vector3.up / 10);
+    //    }
+    //    if (e == ControlScript.MyEvents.Backward)
+    //    {
+    //        transform.position += (Vector3.up / 10 * -1);
+    //    }
+    //    if (e == ControlScript.MyEvents.Space)
+    //    {
+    //        Disable();
+    //    }
+    //    if (e == ControlScript.MyEvents.Shift)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     void OnMouseDown()
     {

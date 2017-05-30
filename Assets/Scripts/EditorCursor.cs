@@ -6,7 +6,27 @@ using Assets.Scripts;
 
 public class EditorCursor : MonoBehaviour
 {
-    private bool CanPlace;
+    public bool CanPlace
+    {
+        get
+        {
+            bool canPlace = false;
+
+            if (transform.childCount != 0)
+            {
+                GameObject cursorObject = transform.GetChild(0).gameObject;
+                WireframeScript wireFrame = cursorObject.GetComponent<WireframeScript>();
+                if (wireFrame.lineColor == Color.green)
+                {
+                    canPlace = true;
+                }
+            }
+
+            return canPlace;
+        }
+        // A private set because Unity's version of C# doesn't support read-only properties.
+        private set { }
+    }
     private GameObject CurrentPrefab;
 
 	/// <summary>
@@ -23,18 +43,48 @@ public class EditorCursor : MonoBehaviour
         
     }
 
-    void OnTriggerStay(Collider other)
+    
+
+    public bool IsAtMouse()
     {
-        WireframeScript wireframe = GetComponentInChildren<WireframeScript>();
-        wireframe.lineColor = Color.red;
-        CanPlace = false;
+        bool atMouse = false;
+
+        Camera mainCamera = Camera.main;
+        Vector3 mousePos = Input.mousePosition;
+
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit, 500F))
+        {
+            if (hit.transform.root.gameObject.Equals(this.gameObject))
+            {
+                atMouse = true;
+            }
+        }
+
+        return atMouse;
     }
 
-    void OnTriggerExit(Collider other)
+    public void MoveToMouse(float range)
     {
-        WireframeScript wireframe = GetComponentInChildren<WireframeScript>();
-        wireframe.lineColor = Color.green;
-        CanPlace = true;
+        Camera mainCamera = Camera.main;
+        Vector3 mousePos = Input.mousePosition;
+
+        Vector3 newPos = new Vector3();
+
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit, range))
+        {
+            newPos = hit.point;
+        }
+        else
+        {
+            mousePos.z = range;
+            newPos = mainCamera.ScreenToWorldPoint(mousePos);
+        }
+
+        this.transform.position = newPos;
     }
 
     public void ChangePrefab(string prefabName)

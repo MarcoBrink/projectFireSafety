@@ -12,12 +12,20 @@ public class EditorManager : MonoBehaviour
     private Scenario CurrentScenario;
     public List<GameObject> Prefabs;
     public EditorCursor CursorPrefab;
-    private EditorCursor Cursor;
+    private EditorCursor EditorCursor;
+    private List<EditorMode> Modes;
+    private EditorMode CurrentMode;
 
     // Use this for initialization
     void Start ()
     {
-        Cursor = Instantiate(CursorPrefab);
+        EditorCursor = Instantiate(CursorPrefab);
+
+        Modes = new List<EditorMode>();
+        Modes.Add(new EditorCursorMode(EditorCursor));
+        Modes.Add(new MoveMode(Camera.main));
+
+        ChangeEditorMode(Modes[0]);
 
         string[] savedScenarios = SaveLoad.GetSavedScenarios();
 
@@ -34,26 +42,27 @@ public class EditorManager : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
-        if (Input.anyKeyDown)
+	void Update ()
+    {
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            if (Input.GetKeyDown(KeyCode.P))
+            if (!(CurrentMode is MoveMode))
             {
-                SaveLoad.SaveScenario("test", CurrentScenario);
-            }
-            else if (Input.GetKeyDown(KeyCode.F5))
-            {
-                SaveLoad.SaveScenario(CurrentScenario.Name, CurrentScenario);
-            }
-            else if (Input.GetKeyDown(KeyCode.F9))
-            {
-                CurrentScenario = SaveLoad.LoadSavedScenario(CurrentScenario.Name);
-                LoadScenario();
+                ChangeEditorMode(Modes[1]);
             }
         }
+        else
+        {
+            if (!(CurrentMode is EditorCursorMode))
+            {
+                ChangeEditorMode(Modes[0]);
+            }
+        }
+
+        CurrentMode.Update();
     }
 
-    void LoadScenario()
+    private void LoadScenario()
     {
         GameObject[] currentObjects = GameObject.FindGameObjectsWithTag("Scenario Object");
 
@@ -76,5 +85,17 @@ public class EditorManager : MonoBehaviour
                 scenarioObject.Object = newObject;
             }
         }
+    }
+
+    private void ChangeEditorMode(EditorMode newMode)
+    {
+        if (CurrentMode != null)
+        {
+            CurrentMode.Disable();
+        }
+
+        CurrentMode = newMode;
+
+        CurrentMode.Enable();
     }
 }

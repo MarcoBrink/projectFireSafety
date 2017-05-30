@@ -111,4 +111,14 @@ public class WireframeScript : MonoBehaviour
             GL.End();
         }
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        lineColor = Color.green;
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        lineColor = Color.red;
+    }
 }
