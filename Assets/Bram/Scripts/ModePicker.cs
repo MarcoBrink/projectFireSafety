@@ -13,15 +13,15 @@ public class ModePicker : MonoBehaviour
     public List<GameObject> Prefabs;
     public EditorCursor CursorPrefab;
     private EditorCursor EditorCursor;
-    private Dictionary<string, EditorMode> Modes;
-    private EditorMode CurrentMode;
+    private Dictionary<string, IEditorMode> Modes;
+    private IEditorMode CurrentMode;
 
     // Use this for initialization
     void Start()
     {
         EditorCursor = Instantiate(CursorPrefab);
 
-        Modes = new Dictionary<string, EditorMode>();
+        Modes = new Dictionary<string, IEditorMode>();
         Modes.Add("Cursor", new EditorCursorMode(EditorCursor));
         Modes.Add("Move", new MoveMode(Camera.main));
 

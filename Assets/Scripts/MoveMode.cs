@@ -32,7 +32,7 @@ namespace Assets.Scripts
         /// <summary>
         /// The movement speed.
         /// </summary>
-        private float MoveSpeed = 0.5F;
+        private float MoveSpeed = 0.25F;
 
         /// <summary>
         /// The transform of the main camera, used for movement.
@@ -144,7 +144,7 @@ namespace Assets.Scripts
                 }
 
                 // Apply the movement to the camera.
-                CameraTransform.Translate(moveDir * Input.GetAxis(axis), Space.World);
+                CameraTransform.Translate(moveDir * Input.GetAxis(axis) * MoveSpeed, Space.World);
             }
         }
 
