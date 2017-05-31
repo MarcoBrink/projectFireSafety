@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33975016732837326}
   - component: {fileID: 65686710928388300}
   - component: {fileID: 23832879769956376}
-  - component: {fileID: 114559477321217568}
   - component: {fileID: 54934664992930746}
   m_Layer: 0
   m_Name: Block
@@ -97,7 +96,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &65686710928388300
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -105,19 +104,8 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341301322915612}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114559477321217568
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341301322915612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52446f876970494419a8823e9a51bdac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

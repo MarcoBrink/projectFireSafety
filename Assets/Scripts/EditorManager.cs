@@ -14,7 +14,7 @@ public class EditorManager : MonoBehaviour
     /// <summary>
     /// The current scenario.
     /// </summary>
-    private Scenario CurrentScenario;
+    public static Scenario CurrentScenario;
 
     /// <summary>
     /// The prefab used for the cursor, set in the Unity Editor.
@@ -72,21 +72,9 @@ public class EditorManager : MonoBehaviour
         LoadScenario();
     }
 
-    /// <summary>
-    /// Some test GUI code, needs to be removed later.
-    /// </summary>
     private void OnGUI()
     {
-        // Make some buttons and a label pertaining to the current mode.
-        GUI.Label(new Rect(10, 10, 150, 30), "Mode: " + CurrentMode.ToString());
-        if (GUI.Button(new Rect(10, 40, 150, 30), "Cursor Mode"))
-        {
-            ChangeEditorMode("Cursor");
-        }
-        if (GUI.Button(new Rect(10, 75, 150, 30), "Movement Mode"))
-        {
-            ChangeEditorMode("Move");
-        }
+        CurrentMode.OnGUI();
     }
 
     /// <summary>

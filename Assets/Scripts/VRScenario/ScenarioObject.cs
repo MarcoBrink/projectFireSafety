@@ -210,7 +210,7 @@ namespace Assets.Scripts.VRScenario
     }
 
     /// <summary>
-    /// Serializable vector 3 data.
+    /// Serializable Vector3 data.
     /// </summary>
     [System.Serializable]
     public class Vector3Data

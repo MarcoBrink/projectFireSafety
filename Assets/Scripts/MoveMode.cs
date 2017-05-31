@@ -80,6 +80,14 @@ namespace Assets.Scripts
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public void OnGUI()
+        {
+
+        }
+
+        /// <summary>
         /// Look in the direction of cursor movement.
         /// </summary>
         private void Look()

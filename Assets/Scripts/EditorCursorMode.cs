@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -11,6 +14,16 @@ namespace Assets.Scripts
         /// The editor cursor.
         /// </summary>
         private EditorCursor ECursor;
+
+        /// <summary>
+        /// Is the user rotating the cursor?
+        /// </summary>
+        private bool IsRotating = false;
+
+        /// <summary>
+        /// The name of the current prefab.
+        /// </summary>
+        private string currentPrefabName;
 
         /// <summary>
         /// The constructor for EditorCursorMode. Needs the cursor to move.
@@ -40,21 +53,18 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// The Disable script for this mode. It doesn't need to do anything, so it doesn't do anything.
+        /// The Disable script for this mode.
         /// </summary>
-        public void Disable() { }
+        public void Disable()
+        {
+            IsRotating = false;
+        }
 
         /// <summary>
         /// The Update script for this mode. Gets input and moves the cursor if needed.
         /// </summary>
         public void Update()
         {
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-            if (scroll != 0F)
-            {
-                
-            }
-
             // Move only if the input has changed, this is more efficiënt.
             if (Input.GetAxis("Horizontal") != 0F)
             {
@@ -70,6 +80,38 @@ namespace Assets.Scripts
             {
                 ECursor.Move("UpDown");
             }
+
+            if (Input.GetAxis("Place") != 0F)
+            {
+                ECursor.PlaceItemAtCursor();
+            }
+
+            if (ECursor.IsAtMouse(Mathf.Infinity))
+            {
+                if (Input.GetMouseButtonDown(2))
+                {
+                    if (!IsRotating)
+                    {
+                        IsRotating = true;
+                    }
+                    else
+                    {
+                        IsRotating = false;
+                    }
+                    
+                }
+            }
+        }
+
+        /// <summary>
+        /// Some test GUI code, needs to be removed later.
+        /// </summary>
+        public void OnGUI()
+        {
+            if (IsRotating)
+            {
+                
+            }
         }
 
         /// <summary>
@@ -79,6 +121,22 @@ namespace Assets.Scripts
         public override string ToString()
         {
             return "Cursor";
+        }
+
+        /// <summary>
+        /// Place an object in the scenario.
+        /// The object is placed at the cursor coördinates.
+        /// </summary>
+        public void placeObject()
+        {
+            // The cursor handles instantiating the object at the right place.
+            GameObject newObject = ECursor.PlaceItemAtCursor();
+
+            if (newObject != null)
+            {
+                // The object needs to be properly registered with the Scenario.
+                EditorManager.CurrentScenario.AddObject(currentPrefabName, newObject);
+            }
         }
     }
 }

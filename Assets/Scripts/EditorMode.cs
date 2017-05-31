@@ -5,6 +5,8 @@
     /// </summary>
     interface IEditorMode
     {
+        void OnGUI();
+
         /// <summary>
         /// This method will be called by the EditorManager each time it updates itself.
         /// </summary>

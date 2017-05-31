@@ -6,6 +6,9 @@ using System.Collections;
 /// </summary>
 public class WireframeScript : MonoBehaviour
 {
+    public bool collides;
+    private Collider ThisCollider;
+
     public bool render_mesh_normally = true;
     public Color lineColor = Color.green;
     public Color backgroundColor = new Color(0.0f, 0.5f, 0.5f);
@@ -21,6 +24,9 @@ public class WireframeScript : MonoBehaviour
 
     void Start()
     {
+        ThisCollider = GetComponent<Collider>();
+        collides = false;
+
         if (lineMaterial == null)
         {
             Shader shader = Shader.Find("Custom/shaderfile");
@@ -114,13 +120,26 @@ public class WireframeScript : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    /// <summary>
+    /// Called once every frame.
+    /// </summary>
+    private void Update()
     {
-        lineColor = Color.green;
-    }
+        // The cursor's own layer is 8, so that should be ignored.
+        int layerMask = 1 << 8;
+        layerMask = ~layerMask;
 
-    void OnTriggerStay(Collider other)
-    {
-        lineColor = Color.red;
+        Collider[] hits = Physics.OverlapBox(transform.position, ThisCollider.bounds.extents, transform.rotation, layerMask);
+
+        if (hits.Length != 0)
+        {
+            collides = true;
+            lineColor = Color.red;
+        }
+        else if(hits.Length == 0)
+        {
+            collides = false;
+            lineColor = Color.green;
+        }
     }
 }

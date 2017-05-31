@@ -46,10 +46,10 @@ public class EditorCursor : MonoBehaviour
 
             if (transform.childCount != 0)
             {
-                // Placement is directly linked to the color of the wireframe around the prefab.
+                // Collisions are kept track of in the WireFrameScript.
                 GameObject cursorObject = transform.GetChild(0).gameObject;
                 WireframeScript wireFrame = cursorObject.GetComponent<WireframeScript>();
-                if (wireFrame.lineColor == Color.green)
+                if (!wireFrame.collides)
                 {
                     canPlace = true;
                 }
@@ -103,6 +103,48 @@ public class EditorCursor : MonoBehaviour
             transformDir = Vector3.up;
         }
         transform.Translate(transformDir * MoveSpeed * Input.GetAxis(axis), Space.World);
+    }
+
+    /// <summary>
+    /// Rotate the cursor along the given axis.
+    /// </summary>
+    /// <param name="axis">The axis to rotate along.</param>
+    public void Rotate()
+    {
+        Vector3 mousePos = Input.mousePosition;
+
+        mousePos.z = Camera.main.transform.position.z - transform.position.z;
+
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        float angle = -Mathf.Atan2(transform.position.z - mouseWorldPos.z, transform.position.x - mouseWorldPos.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, angle, 0), 200 * Time.deltaTime);
+
+        //Vector3 euler = Vector3.zero;
+
+        //if (axis == 'x')
+        //{
+        //    euler.x = Input.GetAxisRaw("Mouse ScrollWheel") * 20F;
+        //}
+        //else if (axis == 'y')
+        //{
+        //    euler.y = Input.GetAxisRaw("Mouse ScrollWheel") * 20F;
+        //}
+        //else if (axis == 'z')
+        //{
+        //    euler.z = Input.GetAxisRaw("Mouse ScrollWheel") * 20F;
+        //}
+        
+        //transform.Rotate(test);
+    }
+
+    /// <summary>
+    /// Reset the rotation to zero.
+    /// </summary>
+    public void ResetRotation()
+    {
+        transform.rotation = new Quaternion();
     }
 
     
@@ -177,7 +219,7 @@ public class EditorCursor : MonoBehaviour
             Destroy(transform.GetChild(0));
         }
         
-
+        // Retrieve the prefab, debug code needs to be changed later.
         GameObject prefab = PrefabManager.GetPrefab(prefabName);
         if (prefab == null)
         {
@@ -187,6 +229,7 @@ public class EditorCursor : MonoBehaviour
         {
             CurrentPrefab = prefab;
 
+            // The prefab is copied and stripped of all components that aren't needed for the editor cursor. Prevents odd behaviour.
             GameObject copy = Instantiate(CurrentPrefab, this.transform.position, this.transform.rotation, this.transform);
             Component[] copyComponents = copy.GetComponents<Component>();
             foreach (Component component in copyComponents)
@@ -195,14 +238,39 @@ public class EditorCursor : MonoBehaviour
                 {
                     Destroy(component);
                 }
+                if (component is Collider)
+                {
+                    Collider collider = component as Collider;
+                    collider.isTrigger = true;
+                }
             }
 
+            // The cursor is placed at the right position.
             copy.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
+            // The wireframe script is added to the object to make it clear whether or not it can be placed.
             WireframeScript wireframe = copy.AddComponent<WireframeScript>();
             wireframe.render_mesh_normally = true;
 
+            // The cursor is placed in layer 8, which is ignored by several raycasts in other related code.
             copy.layer = 8;
         }
+    }
+
+    /// <summary>
+    /// Place the selected prefab at the cursor.
+    /// </summary>
+    /// <returns>The placed object. Null if it couldn't place the object.</returns>
+    public GameObject PlaceItemAtCursor()
+    {
+        GameObject placed = null;
+
+        // Obviously, the item can't be placed if this boolean is set to false.
+        if (CanPlace)
+        {
+            placed = Instantiate(CurrentPrefab, transform.position, transform.rotation);
+        }
+        
+        return placed;
     }
 }
