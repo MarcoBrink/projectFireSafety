@@ -64,7 +64,7 @@ public class EditorCursor : MonoBehaviour
     /// <summary>
     /// The current prefab used by the cursor. Used for placement.
     /// </summary>
-    private GameObject CurrentPrefab;
+    public GameObject CurrentPrefab;
 
 	/// <summary>
     /// The start method for the EditorCursor shows the first prefab.
@@ -269,6 +269,7 @@ public class EditorCursor : MonoBehaviour
         if (CanPlace)
         {
             placed = Instantiate(CurrentPrefab, transform.position, transform.rotation);
+            placed.tag = "Scenario Object";
         }
         
         return placed;

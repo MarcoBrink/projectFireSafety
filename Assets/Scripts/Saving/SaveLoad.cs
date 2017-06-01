@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 using Assets.Scripts.VRScenario;
+using System.Linq;
 
 namespace Assets.Scripts.Saving
 {
@@ -13,6 +16,11 @@ namespace Assets.Scripts.Saving
     /// </summary>
     public static class SaveLoad
     {
+        /// <summary>
+        /// Test authorisation string.
+        /// </summary>
+        private static string Auth = "Provrex";
+
         /// <summary>
         /// The directory where scenarios are saved.
         /// </summary>
@@ -85,10 +93,10 @@ namespace Assets.Scripts.Saving
                     BinaryFormatter formatter = new BinaryFormatter();
 
                     // Deserialize the data.
-                    ScenarioData data = (ScenarioData)formatter.Deserialize(stream);
+                    PVRS data = (PVRS)formatter.Deserialize(stream);
 
                     // Convert the data to a scenario object.
-                    scenario = data.GetScenario();
+                    scenario = data.GetScenario(Auth);
                 }
                 catch (Exception ex)
                 {
@@ -114,7 +122,7 @@ namespace Assets.Scripts.Saving
         public static void SaveScenario(string filename, Scenario scenario)
         {
             // The scenario object needs to be converted to serializable data first.
-            ScenarioData data = new ScenarioData(scenario);
+            PVRS data = new PVRS(Auth, scenario);
 
             FileStream stream = null;
 
@@ -146,6 +154,23 @@ namespace Assets.Scripts.Saving
         private static string GetFilePath(string fileName)
         {
             return SaveDirectory + "/" + fileName + ".pvrs";
+        }
+
+        /// <summary>
+        /// Hash a string. Used to hash the auth string. Doesn't work lol.
+        /// </summary>
+        /// <param name="toHash">The string to hash.</param>
+        /// <returns>The hash belonging to the string.</returns>
+        private static string Hash(string toHash)
+        {
+            string result = "";
+
+            using (SHA512 hasher = SHA512Managed.Create())
+            {
+                result = String.Concat(hasher.ComputeHash(Encoding.UTF8.GetBytes(toHash)).Select(item => item.ToString("x2")));
+            }
+
+            return result;
         }
     }
 }

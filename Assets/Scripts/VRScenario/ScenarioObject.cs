@@ -196,16 +196,40 @@ namespace Assets.Scripts.VRScenario
         /// <summary>
         /// Convert this data to a scenario object.
         /// </summary>
-        /// <returns>The corresponding scenario object.</returns>
+        /// <returns>The corresponding scenario object. Null if the data is invalid.</returns>
         public ScenarioObject GetScenarioObject()
         {
-            // Convert the data back to usable values.
-            Vector3 position = this.Position.GetVector3();
-            Quaternion rotation = this.Rotation.GetQuaternion();
+            ScenarioObject scenarioObject = null;
 
-            // Put these values in a new scenario object and return it.
-            ScenarioObject scenarioObject = new ScenarioObject(this.PrefabName, position, rotation);
+            // Only return the object if the data is valid.
+            if (IsValid())
+            {
+                // Convert the data back to usable values.
+                Vector3 position = this.Position.GetVector3();
+                Quaternion rotation = this.Rotation.GetQuaternion();
+
+                // Put these values in a new scenario object and return it.
+                scenarioObject = new ScenarioObject(this.PrefabName, position, rotation);
+            }
+
             return scenarioObject;
+        }
+
+        /// <summary>
+        /// Check if the data is valid.
+        /// </summary>
+        /// <returns>False if the data is invalid.</returns>
+        private bool IsValid()
+        {
+            bool valid = false;
+
+            // The data is invalid if any of its contents is null.
+            if (this.Position != null && this.Rotation != null && this.PrefabName != null)
+            {
+                valid = true;
+            }
+
+            return valid;
         }
     }
 

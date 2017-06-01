@@ -21,9 +21,19 @@ namespace Assets.Scripts
         private bool IsRotating = false;
 
         /// <summary>
-        /// The name of the current prefab.
+        /// The name of the current prefab. Can be set to change the prefab.
         /// </summary>
-        private string currentPrefabName;
+        private string CurrentPrefabName
+        {
+            get
+            {
+                return ECursor.CurrentPrefab.name;
+            }
+            set
+            {
+                ECursor.ChangePrefab(value);
+            }
+        }
 
         /// <summary>
         /// The constructor for EditorCursorMode. Needs the cursor to move.
@@ -83,7 +93,7 @@ namespace Assets.Scripts
 
             if (Input.GetAxis("Place") != 0F)
             {
-                ECursor.PlaceItemAtCursor();
+                PlaceObject();
             }
 
             if (ECursor.IsAtMouse(Mathf.Infinity))
@@ -108,10 +118,7 @@ namespace Assets.Scripts
         /// </summary>
         public void OnGUI()
         {
-            if (IsRotating)
-            {
-                
-            }
+            
         }
 
         /// <summary>
@@ -127,7 +134,7 @@ namespace Assets.Scripts
         /// Place an object in the scenario.
         /// The object is placed at the cursor coördinates.
         /// </summary>
-        public void placeObject()
+        public void PlaceObject()
         {
             // The cursor handles instantiating the object at the right place.
             GameObject newObject = ECursor.PlaceItemAtCursor();
@@ -135,7 +142,7 @@ namespace Assets.Scripts
             if (newObject != null)
             {
                 // The object needs to be properly registered with the Scenario.
-                EditorManager.CurrentScenario.AddObject(currentPrefabName, newObject);
+                EditorManager.CurrentScenario.AddObject(CurrentPrefabName, newObject);
             }
         }
     }

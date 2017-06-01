@@ -36,6 +36,8 @@ public class EditorManager : MonoBehaviour
     /// </summary>
     private IEditorMode CurrentMode;
 
+    private string SaveName = "newTest";
+
     /// <summary>
     /// This method initializes the editor.
     /// </summary>
@@ -64,16 +66,32 @@ public class EditorManager : MonoBehaviour
         }
         else
         {
-            CurrentScenario = SaveLoad.LoadSavedScenario("test");
+            CurrentScenario = SaveLoad.LoadSavedScenario(savedScenarios[0]);
         }
         #endregion
 
         // After the current scenario is loaded.
-        LoadScenario();
+        LoadScenario(CurrentScenario);
     }
 
+    /// <summary>
+    /// GUI code for the Editor, currently used for debug.
+    /// </summary>
     private void OnGUI()
     {
+        GUI.BeginGroup(new Rect(25, 25, 200, 150));
+        SaveName = GUI.TextField(new Rect(5, 5, 190, 40), SaveName);
+        if (GUI.Button(new Rect(5, 55, 190, 40), "Save"))
+        {
+            SaveLoad.SaveScenario(SaveName, CurrentScenario);
+        }
+        if (GUI.Button(new Rect(5, 110, 190, 40), "Load"))
+        {
+            Scenario loaded = SaveLoad.LoadSavedScenario(SaveName);
+            LoadScenario(loaded);
+        }
+        GUI.EndGroup();
+
         CurrentMode.OnGUI();
     }
 
@@ -100,7 +118,7 @@ public class EditorManager : MonoBehaviour
     /// <summary>
     /// This method is used to load a scenario from a file. Removes all current objects and spawns saved ones.
     /// </summary>
-    private void LoadScenario()
+    private void LoadScenario(Scenario scenario)
     {
         // All scenario objects will have this tag, so they can be properly removed by the editor manager.
         GameObject[] currentObjects = GameObject.FindGameObjectsWithTag("Scenario Object");
@@ -114,7 +132,7 @@ public class EditorManager : MonoBehaviour
         GameObject floor = GameObject.FindGameObjectWithTag("Floor");
 
         // All objects are spawned in a loop.
-        foreach (ScenarioObject scenarioObject in CurrentScenario.Objects)
+        foreach (ScenarioObject scenarioObject in scenario.Objects)
         {
             if (!scenarioObject.HasObjectReference)
             {
@@ -127,9 +145,12 @@ public class EditorManager : MonoBehaviour
 
                 //Instantiate an instance of the right prefab with these characteristics and hand a reference to the scenario object.
                 GameObject newObject = Instantiate(prefab, position, rotation);
+                newObject.tag = "Scenario Object";
                 scenarioObject.Object = newObject;
             }
         }
+
+        CurrentScenario = scenario;
     }
 
     /// <summary>

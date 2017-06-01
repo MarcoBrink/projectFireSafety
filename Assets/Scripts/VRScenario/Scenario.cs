@@ -112,20 +112,55 @@ namespace Assets.Scripts.VRScenario
         /// <returns>The corresponding Scenario.</returns>
         public Scenario GetScenario()
         {
-            // Get a usable Vector2 for dimensions.
-            Vector2 dimensions = this.Dimensions.GetVector2();
+            Scenario scenario = null;
 
-            // Create a new list for the scenario objects and fill it.
-            List<ScenarioObject> objects = new List<ScenarioObject>();
-
-            foreach (ScenarioObjectData scenarioObject in this.Objects)
+            // Only return the scenario if the data is valid.
+            if (IsValid())
             {
-                objects.Add(scenarioObject.GetScenarioObject());
+                // Get a usable Vector2 for dimensions.
+                Vector2 dimensions = this.Dimensions.GetVector2();
+
+                // Create a new list for the scenario objects and fill it.
+                List<ScenarioObject> objects = new List<ScenarioObject>();
+
+                foreach (ScenarioObjectData scenarioObject in this.Objects)
+                {
+                    objects.Add(scenarioObject.GetScenarioObject());
+                }
+
+                // Create a scenario with the given data and return it.
+                scenario = new Scenario(this.Name, dimensions, objects.ToArray());
+            }
+            
+            return scenario;
+        }
+
+        /// <summary>
+        /// Validate the ScenarioData.
+        /// </summary>
+        /// <returns>False if the ScenarioData is invalid.</returns>
+        private bool IsValid()
+        {
+            bool valid = false;
+
+            // The data is invalid if any of its contents is null.
+            if (Name != null && Dimensions != null && Objects != null)
+            {
+                valid = true;
+            }
+            else if (Objects.Length > 0)
+            {
+                foreach (ScenarioObjectData item in Objects)
+                {
+                    if (item == null)
+                    {
+                        valid = false;
+                        break;
+                    }
+                }
             }
 
-            // Create a scenario with the given data and return it.
-            Scenario scenario = new Scenario(this.Name, dimensions, objects.ToArray());
-            return scenario;
+            return valid;
         }
     }
 
