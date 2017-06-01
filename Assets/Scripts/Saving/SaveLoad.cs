@@ -46,10 +46,10 @@ namespace Assets.Scripts.Saving
         /// Get the names of all currently saved scenarios.
         /// </summary>
         /// <returns>An array of strings that describe the names of all scenarios.</returns>
-        public static string[] GetSavedScenarios()
+        public static string[] GetSavedScenarios(string dir)
         {
             // Get the files first.
-            string[] foundFiles = Directory.GetFiles(SaveDirectory);
+            string[] foundFiles = Directory.GetFiles(dir);
             List<string> validFiles = new List<string>();
 
             // Check the files for validity. Needs more checks later, security checks for instance.
