@@ -58,7 +58,7 @@ public class EditorManager : MonoBehaviour
 
         // Some loading test code, needs to be changed.
         #region TestLoading
-        string[] savedScenarios = SaveLoad.GetSavedScenarios();
+        string[] savedScenarios = SaveLoad.GetSavedScenarios(SaveLoad.GetFilePath("newTest"));
 
         if (savedScenarios.Length == 0)
         {

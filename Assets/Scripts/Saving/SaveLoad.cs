@@ -151,7 +151,7 @@ namespace Assets.Scripts.Saving
         /// </summary>
         /// <param name="fileName">The name of the scenario.</param>
         /// <returns>The path on disk for the scenario.</returns>
-        private static string GetFilePath(string fileName)
+        public static string GetFilePath(string fileName)
         {
             return SaveDirectory + "/" + fileName + ".pvrs";
         }

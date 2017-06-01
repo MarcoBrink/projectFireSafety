@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Bram/Scenes/Settings.unity
     guid: 84e1115928e966f429de63780f17494d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Editor/Editor.unity
     guid: 13ee3324a3512bf4293288504a4d631e
   - enabled: 0
