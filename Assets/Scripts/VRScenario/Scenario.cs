@@ -59,6 +59,7 @@ namespace Assets.Scripts.VRScenario
         /// <param name="gameObject">The object to add to the scenario.</param>
         public void AddObject(string prefabName, GameObject gameObject)
         {
+            gameObject.tag = "Scenario Object";
             ScenarioObject newObject = new ScenarioObject(prefabName, gameObject);
             Objects.Add(newObject);
         }

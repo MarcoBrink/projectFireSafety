@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.PVRSEditor
 {
     /// <summary>
     /// This editor mode allows the user to manipulate the cursor so they can place items.
@@ -96,21 +96,15 @@ namespace Assets.Scripts
                 PlaceObject();
             }
 
-            if (ECursor.IsAtMouse(Mathf.Infinity))
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Input.GetMouseButtonDown(2))
+                if (!ECursor.IsAtMouse(Mathf.Infinity))
                 {
-                    if (!IsRotating)
-                    {
-                        IsRotating = true;
-                    }
-                    else
-                    {
-                        IsRotating = false;
-                    }
-                    
+                    ECursor.MoveToMouse();
                 }
             }
+
+            
         }
 
         /// <summary>

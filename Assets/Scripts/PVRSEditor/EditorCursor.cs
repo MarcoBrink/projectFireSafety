@@ -17,7 +17,8 @@ public class EditorCursor : MonoBehaviour
     /// <summary>
     /// The bounds of the current prefab.
     /// </summary>
-    private Bounds prefabBounds
+    /// Used to place the cursor correctly of the surface of other objects.
+    private Bounds PrefabBounds
     {
         get
         {
@@ -75,17 +76,13 @@ public class EditorCursor : MonoBehaviour
         ChangePrefab(firstPrefabName);
     }
 
-    private void Update()
-    {
-        
-    }
-
     /// <summary>
     /// Move along the given axis based on input.
     /// </summary>
     /// <param name="axis">The input axis to check for movement.</param>
     public void Move(string axis)
     {
+        // Shortcut for main camera and start
         Camera mainCam = Camera.main;
         Vector3 transformDir = Vector3.zero;
         if (axis == "Horizontal")
@@ -147,6 +144,31 @@ public class EditorCursor : MonoBehaviour
         transform.rotation = new Quaternion();
     }
 
+    /// <summary>
+    /// Move the cursor to the mouse.
+    /// </summary>
+    public void MoveToMouse()
+    {
+        Camera mainCamera = Camera.main;
+        Vector3 mousePos = Input.mousePosition;
+
+        // The cursor is in layer 8.
+        int layerMask = 0 >> 8;
+        layerMask = ~layerMask;
+
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        {
+            Collider collider = hit.collider;
+            Vector3 pos = GetCollisionPos(hit);
+            this.transform.position = pos;
+        }
+        else
+        {
+            this.transform.position = mainCamera.transform.position + ray.direction * 15F;
+        }
+    }
     
     /// <summary>
     /// Check if the cursor is at the current mouse position, within the specified range.
@@ -178,31 +200,17 @@ public class EditorCursor : MonoBehaviour
     /// </summary>
     /// <param name="collider">The collider with which the cursor has collided.</param>
     /// <returns>The new position for the cursor after the collision.</returns>
-    private Vector3 GetCollisionPos(Collider collider)
+    private Vector3 GetCollisionPos(RaycastHit hit)
     {
-        Vector3 cameraPos  = Camera.main.transform.position;
-        Vector3 collisionPos = collider.ClosestPointOnBounds(cameraPos);
+        Transform mainCam = Camera.main.transform;
+        Vector3 collisionPos = hit.point;
 
-        Vector3 head = collisionPos - cameraPos;
-        float dist = head.magnitude;
-        Vector3 dir = head / dist;
-        Debug.Log(dir.ToString());
-
-        Ray ray = new Ray(transform.position, dir);
-        float hitdist;
-        collider.bounds.IntersectRay(ray, out hitdist);
-
-        // The cursor prefab object has layer 8.
-        int layerMask = 1 << 8;
-        layerMask = ~layerMask;
-
-        RaycastHit hitInfo;
-        Physics.Raycast(ray, out hitInfo, hitdist + 1F, layerMask);
+        Vector3 dir = hit.normal;
 
         Vector3 offset = Vector3.zero;
-        offset.x = -dir.x * prefabBounds.extents.x;
-        offset.y = -dir.y * prefabBounds.extents.y;
-        offset.z = -dir.z * prefabBounds.extents.z;
+        offset.x = dir.x * PrefabBounds.extents.x + 0.01F;
+        offset.y = dir.y * PrefabBounds.extents.y + 0.01F;
+        offset.z = dir.z * PrefabBounds.extents.z + 0.01F;
 
         Vector3 finalPos = collisionPos + offset;
         return finalPos;

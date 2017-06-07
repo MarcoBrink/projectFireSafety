@@ -5,6 +5,7 @@ using UnityEngine;
 using Assets.Scripts.VRScenario;
 using Assets.Scripts.Saving;
 using Assets.Scripts;
+using Assets.Scripts.PVRSEditor;
 
 /// <summary>
 /// A manager class for the editor. This MonoBehaviour is responsible for running the editor functionality.
@@ -80,7 +81,7 @@ public class EditorManager : MonoBehaviour
     private void OnGUI()
     {
         GUI.BeginGroup(new Rect(25, 25, 200, 150));
-        SaveName = GUI.TextField(new Rect(5, 5, 190, 40), SaveName);
+        //SaveName = GUI.TextField(new Rect(5, 5, 190, 40), SaveName);
         if (GUI.Button(new Rect(5, 55, 190, 40), "Save"))
         {
             SaveLoad.SaveScenario(SaveName, CurrentScenario);

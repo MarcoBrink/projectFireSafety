@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.PVRSEditor
 {
     /// <summary>
     /// This editor mode allows the user to use first person freecam controls in the editor.

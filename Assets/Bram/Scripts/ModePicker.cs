@@ -5,6 +5,7 @@ using UnityEngine;
 using Assets.Scripts.VRScenario;
 using Assets.Scripts.Saving;
 using Assets.Scripts;
+using Assets.Scripts.PVRSEditor;
 
 public class ModePicker : MonoBehaviour
 {

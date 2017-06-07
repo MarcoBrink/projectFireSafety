@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts
+﻿namespace Assets.Scripts.PVRSEditor
 {
     /// <summary>
     /// This interface allows for the creation of several flexible editor modes. Editor modes should implement it.
