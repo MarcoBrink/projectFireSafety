@@ -8,15 +8,46 @@ namespace Assets.Scripts.PVRSEditor
 {
     public class SelectionMode : IEditorMode
     {
+        /// <summary>
+        /// The currently selected object.
+        /// </summary>
         private ScenarioObject selectedObject;
-        private EditorCursor mockCursor;
+
+        /// <summary>
+        /// The cursor used to change the object.
+        /// </summary>
+        private EditorCursor ECursor;
+
+        /// <summary>
+        /// The prefab for the Editor Cursor. Passed by the EditorManager.
+        /// </summary>
+        private EditorCursor ECursorPrefab;
+
+        /// <summary>
+        /// Constructor for selection mode.
+        /// </summary>
+        /// <param name="eCursorPrefab">The prefab for an editor cursor.</param>
+        public SelectionMode(EditorCursor eCursorPrefab)
+        {
+            this.ECursorPrefab = eCursorPrefab;
+        }
 
         /// <summary>
         /// Called when the mode is enabled.
         /// </summary>
         public void Enable()
         {
+            // The cursor needs to be visible for this mode to work.
+            if (Cursor.visible == false)
+            {
+                Cursor.visible = true;
+            }
 
+            // The cursor needs to be freed for this mode to work.
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
 
         /// <summary>
@@ -24,9 +55,29 @@ namespace Assets.Scripts.PVRSEditor
         /// </summary>
         public void Update()
         {
+            // Move only if the input has changed, this is more efficiënt.
+            if (Input.GetAxis("Horizontal") != 0F)
+            {
+                ECursor.Move("Horizontal");
+            }
+
+            if (Input.GetAxis("Vertical") != 0F)
+            {
+                ECursor.Move("Vertical");
+            }
+
+            if (Input.GetAxis("UpDown") != 0F)
+            {
+                ECursor.Move("UpDown");
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
-                
+                ScenarioObject cursorObject = GetObjectAtCursor();
+                if (cursorObject != null)
+                {
+                    SelectObject(cursorObject);
+                }
             }
         }
 
@@ -35,7 +86,7 @@ namespace Assets.Scripts.PVRSEditor
         /// </summary>
         public void Disable()
         {
-
+            DeselectObject();
         }
 
         /// <summary>
@@ -50,13 +101,38 @@ namespace Assets.Scripts.PVRSEditor
         /// Select an object in the level.
         /// </summary>
         /// <param name="newObject">The Scenario Object connected to the selected object.</param>
-        public void SelectObject(ScenarioObject newObject)
+        private void SelectObject(ScenarioObject newObject)
+        {
+            if (selectedObject == null || !selectedObject.Equals(newObject))
+            {
+                DeselectObject();
+
+                this.selectedObject = newObject;
+
+                // Use a cursor to track the position.
+                this.ECursor = Object.Instantiate(ECursorPrefab);
+                ECursor.ChangePrefab(newObject.PrefabName);
+                ECursor.Position = newObject.Position;
+                ECursor.Rotation = newObject.Rotation;
+
+                newObject.Object.transform.localScale = Vector3.zero;
+            }
+        }
+
+        /// <summary>
+        /// Deselect the currently selected object.
+        /// </summary>
+        private void DeselectObject()
         {
             if (selectedObject != null)
             {
-                
+                selectedObject.Position = ECursor.Position;
+                selectedObject.Rotation = ECursor.Rotation;
+                selectedObject.Object.transform.localScale = Vector3.one;
+                Object.Destroy(ECursor);
+
+                selectedObject = null;
             }
-            this.selectedObject = newObject;
         }
 
         /// <summary>
@@ -88,6 +164,15 @@ namespace Assets.Scripts.PVRSEditor
             }
 
             return foundObject;
+        }
+
+        /// <summary>
+        /// The ToString method for this mode. Returns its name.
+        /// </summary>
+        /// <returns>The name of this mode.</returns>
+        public override string ToString()
+        {
+            return "Selection";
         }
     }
 }

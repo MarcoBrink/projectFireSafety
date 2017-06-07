@@ -53,6 +53,8 @@ public class EditorManager : MonoBehaviour
         Modes.Add(cursorMode.ToString(), cursorMode);
         IEditorMode movementMode = new MoveMode(Camera.main);
         Modes.Add(movementMode.ToString(), movementMode);
+        IEditorMode selectionMode = new SelectionMode(CursorPrefab);
+        Modes.Add(selectionMode.ToString(), selectionMode);
 
         // The initial mode; trivial and could (or even should) be changed to something dynamic later.
         ChangeEditorMode("Cursor");
@@ -104,11 +106,15 @@ public class EditorManager : MonoBehaviour
         // Tab is currently a fixed key for switching modes, should be changed later.
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (!(CurrentMode is MoveMode))
+            if (CurrentMode is MoveMode)
+            {
+                ChangeEditorMode("Selection");
+            }
+            else if (CurrentMode is EditorCursorMode)
             {
                 ChangeEditorMode("Move");
             }
-            else if(!(CurrentMode is EditorCursorMode))
+            else if (CurrentMode is SelectionMode)
             {
                 ChangeEditorMode("Cursor");
             }

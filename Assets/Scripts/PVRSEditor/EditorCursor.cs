@@ -15,6 +15,37 @@ public class EditorCursor : MonoBehaviour
     private float MoveSpeed = 0.125F;
 
     /// <summary>
+    /// The position of the cursor.
+    /// </summary>
+    public Vector3 Position
+    {
+        get
+        {
+            return transform.position;
+        }
+        set
+        {
+            transform.position = value;
+        }
+    }
+
+    /// <summary>
+    /// The rotation of the cursor.
+    /// </summary>
+    public Quaternion Rotation
+    {
+        get
+        {
+            return this.transform.rotation;
+        }
+        set
+        {
+            this.transform.rotation = value;
+        }
+    }
+
+
+    /// <summary>
     /// The bounds of the current prefab.
     /// </summary>
     /// Used to place the cursor correctly of the surface of other objects.
@@ -224,7 +255,7 @@ public class EditorCursor : MonoBehaviour
     {
         if (transform.childCount != 0)
         {
-            Destroy(transform.GetChild(0));
+            Destroy(transform.GetChild(0).gameObject);
         }
         
         // Retrieve the prefab, debug code needs to be changed later.
