@@ -24,7 +24,7 @@ namespace Assets.Scripts.Saving
         /// <summary>
         /// The directory where scenarios are saved.
         /// </summary>
-        private static string SaveDirectory = Application.persistentDataPath + "/Scenarios";
+        public static string SaveDirectory = Application.persistentDataPath + "/Scenarios";
 
         /// <summary>
         /// The file type for scenarios. Currently allows lowercase and uppercase for the filetype.
@@ -45,6 +45,7 @@ namespace Assets.Scripts.Saving
         /// <summary>
         /// Get the names of all currently saved scenarios.
         /// </summary>
+        /// <param name="dir">The directory to search.</param>
         /// <returns>An array of strings that describe the names of all scenarios.</returns>
         public static string[] GetSavedScenarios(string dir)
         {

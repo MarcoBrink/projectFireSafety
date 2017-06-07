@@ -139,32 +139,19 @@ public class EditorCursor : MonoBehaviour
     /// <param name="axis">The axis to rotate along.</param>
     public void Rotate()
     {
-        Vector3 mousePos = Input.mousePosition;
+        // The vector to store all angles to rotate at.
+        Vector3 rotationEuler = Vector3.zero;
+        rotationEuler.x += Input.GetAxis("RotateX") * 1.5F;
+        rotationEuler.y += Input.GetAxis("RotateY") * 1.5F;
+        rotationEuler.z += Input.GetAxis("RotateZ") * 1.5F;
 
-        mousePos.z = Camera.main.transform.position.z - transform.position.z;
+        // The main camera transform is used to get relative rotation.
+        Transform mainCamTrans = Camera.main.transform;
 
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
-
-        float angle = -Mathf.Atan2(transform.position.z - mouseWorldPos.z, transform.position.x - mouseWorldPos.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, angle, 0), 200 * Time.deltaTime);
-
-        //Vector3 euler = Vector3.zero;
-
-        //if (axis == 'x')
-        //{
-        //    euler.x = Input.GetAxisRaw("Mouse ScrollWheel") * 20F;
-        //}
-        //else if (axis == 'y')
-        //{
-        //    euler.y = Input.GetAxisRaw("Mouse ScrollWheel") * 20F;
-        //}
-        //else if (axis == 'z')
-        //{
-        //    euler.z = Input.GetAxisRaw("Mouse ScrollWheel") * 20F;
-        //}
-        
-        //transform.Rotate(test);
+        // Rotate along each angle relative to the world.
+        transform.Rotate(mainCamTrans.forward, rotationEuler.x, Space.World);
+        transform.Rotate(mainCamTrans.up, rotationEuler.y, Space.World);
+        transform.Rotate(mainCamTrans.right, rotationEuler.z, Space.World);
     }
 
     /// <summary>

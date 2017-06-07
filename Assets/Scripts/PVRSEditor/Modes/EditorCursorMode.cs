@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.PVRSEditor
 {
@@ -14,11 +11,6 @@ namespace Assets.Scripts.PVRSEditor
         /// The editor cursor.
         /// </summary>
         private EditorCursor ECursor;
-
-        /// <summary>
-        /// Is the user rotating the cursor?
-        /// </summary>
-        private bool IsRotating = false;
 
         /// <summary>
         /// The name of the current prefab. Can be set to change the prefab.
@@ -38,10 +30,13 @@ namespace Assets.Scripts.PVRSEditor
         /// <summary>
         /// The constructor for EditorCursorMode. Needs the cursor to move.
         /// </summary>
-        /// <param name="cursor">The cursor.</param>
+        /// <param name="cursor">The cursor prefab.</param>
         public EditorCursorMode(EditorCursor cursor)
         {
-            this.ECursor = cursor;
+            this.ECursor = GameObject.Instantiate(cursor);
+
+            // The cursor is hidden first by scaling it down to zero.
+            ECursor.transform.localScale = Vector3.zero;
         }
 
         /// <summary>
@@ -60,6 +55,9 @@ namespace Assets.Scripts.PVRSEditor
             {
                 Cursor.lockState = CursorLockMode.None;
             }
+
+            // Show the cursor by resetting its scale to one.
+            ECursor.transform.localScale = Vector3.one;
         }
 
         /// <summary>
@@ -67,7 +65,8 @@ namespace Assets.Scripts.PVRSEditor
         /// </summary>
         public void Disable()
         {
-            IsRotating = false;
+            // Hide the cursor by setting the scale to zero.
+            ECursor.transform.localScale = Vector3.zero;
         }
 
         /// <summary>
@@ -94,6 +93,12 @@ namespace Assets.Scripts.PVRSEditor
             if (Input.GetAxis("Place") != 0F)
             {
                 PlaceObject();
+            }
+
+            // Only rotate if actual rotation took place.
+            if (Input.GetAxis("RotateX") != 0F || Input.GetAxis("RotateY") != 0F || Input.GetAxis("RotateZ") != 0F)
+            {
+                ECursor.Rotate();
             }
 
             if (Input.GetMouseButtonDown(0))

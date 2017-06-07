@@ -5,12 +5,10 @@
     /// </summary>
     interface IEditorMode
     {
-        void OnGUI();
-
         /// <summary>
-        /// This method will be called by the EditorManager each time it updates itself.
+        /// This method will be called each time the mode is closed to switch to a different one.
         /// </summary>
-        void Update();
+        void Disable();
 
         /// <summary>
         /// This method will be called by the EditorManager each time the mode is switched to.
@@ -18,14 +16,19 @@
         void Enable();
 
         /// <summary>
-        /// This method will be called each time the mode is closed to switch to a different one.
+        /// Used by the mode to draw UI. Probably not needed after debugging.
         /// </summary>
-        void Disable();
+        void OnGUI();
 
         /// <summary>
         /// This method is used to determine the name of the editor mode.
         /// </summary>
         /// <returns>The name of the mode as a String. Will be shown in UI.</returns>
         string ToString();
+
+        /// <summary>
+        /// This method will be called by the EditorManager each time it updates itself.
+        /// </summary>
+        void Update();
     }
 }

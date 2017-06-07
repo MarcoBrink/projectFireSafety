@@ -23,11 +23,6 @@ public class EditorManager : MonoBehaviour
     public EditorCursor CursorPrefab;
 
     /// <summary>
-    /// The cursor used by the editor.
-    /// </summary>
-    private EditorCursor EditorCursor;
-
-    /// <summary>
     /// A list of all existing editor modes.
     /// </summary>
     private Dictionary<string, IEditorMode> Modes;
@@ -44,12 +39,9 @@ public class EditorManager : MonoBehaviour
     /// </summary>
     void Start ()
     {
-        // The cursor needs to be instantiated first, because it is needed for a mode.
-        EditorCursor = Instantiate(CursorPrefab);
-
         //The modes need to be made next, so they can be used by the editor.
         Modes = new Dictionary<string, IEditorMode>();
-        IEditorMode cursorMode = new EditorCursorMode(EditorCursor);
+        IEditorMode cursorMode = new EditorCursorMode(CursorPrefab);
         Modes.Add(cursorMode.ToString(), cursorMode);
         IEditorMode movementMode = new MoveMode(Camera.main);
         Modes.Add(movementMode.ToString(), movementMode);
@@ -61,7 +53,7 @@ public class EditorManager : MonoBehaviour
 
         // Some loading test code, needs to be changed.
         #region TestLoading
-        string[] savedScenarios = SaveLoad.GetSavedScenarios(SaveLoad.GetFilePath("newTest"));
+        string[] savedScenarios = SaveLoad.GetSavedScenarios(SaveLoad.SaveDirectory);
 
         if (savedScenarios.Length == 0)
         {
