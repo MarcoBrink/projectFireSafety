@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Assets.Scripts.VRScenario;
 using Assets.Scripts.Saving;
 using Assets.Scripts;
@@ -12,8 +13,15 @@ using Assets.Scripts.PVRSEditor;
 /// </summary>
 public class EditorManager : MonoBehaviour
 {
-    // Assigned in inspector.
-    private Canvas Objectmenu;
+    /// <summary>
+    /// The Canvases used by the UI. Assigned in Unity Editor.
+    /// </summary>
+    public Canvas[] Menus;
+
+    /// <summary>
+    /// Used to fill the object view.
+    /// </summary>
+    public ObjectPanel PanelPrefab;
 
     /// <summary>
     /// The current scenario.
@@ -35,7 +43,10 @@ public class EditorManager : MonoBehaviour
     /// </summary>
     private IEditorMode CurrentMode;
 
-    private string SaveName = "newTest";
+    /// <summary>
+    /// The name of the previous mode to return to when going out of movemode.
+    /// </summary>
+    private string PreviousMode;
 
     /// <summary>
     /// This method initializes the editor.
@@ -51,8 +62,15 @@ public class EditorManager : MonoBehaviour
         IEditorMode selectionMode = new SelectionMode(CursorPrefab);
         Modes.Add(selectionMode.ToString(), selectionMode);
 
-        // The initial mode; trivial and could (or even should) be changed to something dynamic later.
-        ChangeEditorMode("Cursor");
+        HideMenus();
+
+        UnityEngine.UI.ScrollRect scrollView = FindObjectOfType<UnityEngine.UI.ScrollRect>();
+        foreach (GameObject prefab in PrefabManager.Prefabs)
+        {
+            ObjectPanel panel = Instantiate(PanelPrefab);
+            panel.ObjectPrefab = prefab.name;
+            panel.transform.SetParent(scrollView.content, false);
+        }
 
         // Some loading test code, needs to be changed.
         #region TestLoading
@@ -73,48 +91,27 @@ public class EditorManager : MonoBehaviour
     }
 
     /// <summary>
-    /// GUI code for the Editor, currently used for debug.
-    /// </summary>
-    private void OnGUI()
-    {
-        GUI.BeginGroup(new Rect(25, 25, 200, 150));
-        //SaveName = GUI.TextField(new Rect(5, 5, 190, 40), SaveName);
-        if (GUI.Button(new Rect(5, 55, 190, 40), "Save"))
-        {
-            SaveLoad.SaveScenario(SaveName, CurrentScenario);
-        }
-        if (GUI.Button(new Rect(5, 110, 190, 40), "Load"))
-        {
-            Scenario loaded = SaveLoad.LoadSavedScenario(SaveName);
-            LoadScenario(loaded);
-        }
-        GUI.EndGroup();
-
-        CurrentMode.OnGUI();
-    }
-
-    /// <summary>
     /// The update method is called once per frame. It checks for general input and calls the current mode's Update method.
     /// </summary>
     void Update ()
     {
-        // Tab is currently a fixed key for switching modes, should be changed later.
+        // Tab is the fixed key for switching to move mode.
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (CurrentMode is MoveMode)
             {
-                ChangeEditorMode("Selection");
+                ChangeEditorMode(PreviousMode);
             }
-            else if (CurrentMode is EditorCursorMode)
+            else
             {
+                PreviousMode = CurrentMode.ToString();
                 ChangeEditorMode("Move");
             }
-            else if (CurrentMode is SelectionMode)
-            {
-                ChangeEditorMode("Cursor");
-            }
         }
-        CurrentMode.Update();
+        if (CurrentMode != null)
+        {
+            CurrentMode.Update();
+        }
     }
 
     /// <summary>
@@ -153,13 +150,15 @@ public class EditorManager : MonoBehaviour
         }
 
         CurrentScenario = scenario;
+
+        ChangeEditorMode("Cursor");
     }
 
     /// <summary>
     /// Change the current mode to the given mode.
     /// </summary>
     /// <param name="modeName">The name of the mode to switch to. Should be that mode's ToString()</param>
-    private void ChangeEditorMode(string modeName)
+    public void ChangeEditorMode(string modeName)
     {
         // The current mode needs to be disabled, if there is one.
         if (CurrentMode != null)
@@ -173,11 +172,81 @@ public class EditorManager : MonoBehaviour
         CurrentMode.Enable();
     }
 
-    
-
-    public void ToggleObject()
+    /// <summary>
+    /// Toggle a menu in the GUI.
+    /// </summary>
+    /// <param name="menuIndex">The index of the menu in the Menus array.</param>
+    public void ToggleMenu(int menuIndex)
     {
-        Objectmenu = GetComponent<Canvas>();
-        Objectmenu.enabled = !Objectmenu.enabled;
+        Canvas Menu = Menus[menuIndex];
+        if (Menu.enabled)
+        {
+            Menu.enabled = false;
+        }
+        else
+        {
+            Menu.enabled = true;
+        }
+    }
+
+    /// <summary>
+    /// Return to the main menu.
+    /// </summary>
+    public void ToMainMenu()
+    {
+        // Properly save the current scenario.
+        SaveScenario();
+
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
+    }
+
+    /// <summary>
+    /// Save the current scenario.
+    /// </summary>
+    public void SaveScenario()
+    {
+        // Disable the current mode to save changes.
+        CurrentMode.Disable();
+
+        SaveLoad.SaveScenario(CurrentScenario);
+
+        // Restore the current mode.
+        CurrentMode.Enable();
+    }
+
+    /// <summary>
+    /// Hide all menus at start except the main one.
+    /// </summary>
+    private void HideMenus()
+    {
+        for (int i = 0; i < Menus.Length; i++)
+        {
+            ToggleMenu(i);
+        }
+    }
+
+    /// <summary>
+    /// Load the last saved version of the current scenario.
+    /// </summary>
+    public void LoadCurrentScenario()
+    {
+        LoadScenario(SaveLoad.LoadSavedScenario(CurrentScenario.Name));
+    }
+
+    /// <summary>
+    /// Change the prefab in the editor cursor.
+    /// Also switches to cursor mode.
+    /// </summary>
+    /// <param name="name">The name of the prefab.</param>
+    public void ChangePrefab(string name)
+    {
+        if (!(CurrentMode is EditorCursorMode))
+        {
+            ChangeEditorMode("Cursor");
+        }
+
+        EditorCursorMode cursMode = CurrentMode as EditorCursorMode;
+        cursMode.CurrentPrefabName = name;
     }
 }

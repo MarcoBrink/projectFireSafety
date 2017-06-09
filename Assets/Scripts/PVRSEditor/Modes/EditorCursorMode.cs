@@ -15,7 +15,7 @@ namespace Assets.Scripts.PVRSEditor
         /// <summary>
         /// The name of the current prefab. Can be set to change the prefab.
         /// </summary>
-        private string CurrentPrefabName
+        public string CurrentPrefabName
         {
             get
             {
@@ -101,23 +101,13 @@ namespace Assets.Scripts.PVRSEditor
                 ECursor.Rotate();
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !(bool)UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
                 if (!ECursor.IsAtMouse(Mathf.Infinity))
                 {
                     ECursor.MoveToMouse();
                 }
             }
-
-            
-        }
-
-        /// <summary>
-        /// Some test GUI code, needs to be removed later.
-        /// </summary>
-        public void OnGUI()
-        {
-            
         }
 
         /// <summary>

@@ -16,11 +16,6 @@
         void Enable();
 
         /// <summary>
-        /// Used by the mode to draw UI. Probably not needed after debugging.
-        /// </summary>
-        void OnGUI();
-
-        /// <summary>
         /// This method is used to determine the name of the editor mode.
         /// </summary>
         /// <returns>The name of the mode as a String. Will be shown in UI.</returns>

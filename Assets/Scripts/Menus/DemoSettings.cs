@@ -1,4 +1,5 @@
-﻿public class DemoSettings {
+﻿public class DemoSettings
+{
 	//Variabelen om settings bij te houden
 	//Wel/Niet fullscreen
     public bool fullscreen;

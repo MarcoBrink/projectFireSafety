@@ -79,7 +79,7 @@ namespace Assets.Scripts.PVRSEditor
                 }
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !(bool)UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
                 ScenarioObject cursorObject = GetObjectAtCursor();
                 if (cursorObject != null)
@@ -100,14 +100,6 @@ namespace Assets.Scripts.PVRSEditor
         {
             // Deselect any currently selected objects.
             DeselectObject();
-        }
-
-        /// <summary>
-        /// Used for GUI events.
-        /// </summary>
-        public void OnGUI()
-        {
-
         }
 
         /// <summary>

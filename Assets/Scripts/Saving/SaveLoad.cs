@@ -120,7 +120,7 @@ namespace Assets.Scripts.Saving
         /// </summary>
         /// <param name="filename">The name with which to save the scenario.</param>
         /// <param name="scenario">The scenario object to save.</param>
-        public static void SaveScenario(string filename, Scenario scenario)
+        public static void SaveScenario(Scenario scenario)
         {
             // The scenario object needs to be converted to serializable data first.
             PVRS data = new PVRS(Auth, scenario);
@@ -129,7 +129,7 @@ namespace Assets.Scripts.Saving
 
             try
             {
-                stream = File.Create(GetFilePath(filename));
+                stream = File.Create(GetFilePath(scenario.Name));
                 BinaryFormatter formatter = new BinaryFormatter();
 
                 formatter.Serialize(stream, data);
