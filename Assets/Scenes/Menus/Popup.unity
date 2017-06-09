@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -248,8 +248,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1263929895}
-        m_MethodName: OpenHome
+      - m_Target: {fileID: 899961033}
+        m_MethodName: ToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1263929896}
+      - m_Target: {fileID: 899961033}
         m_MethodName: CloseApplication
         m_Mode: 1
         m_Arguments:
@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 899961031}
   - component: {fileID: 899961030}
   - component: {fileID: 899961029}
+  - component: {fileID: 899961033}
   m_Layer: 5
   m_Name: Popup
   m_TagString: Untagged
@@ -580,6 +581,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &899961033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 899961028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05dd745bb277ad34a8422615757b317f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1143452255
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,8 +678,6 @@ GameObject:
   - component: {fileID: 1263929890}
   - component: {fileID: 1263929889}
   - component: {fileID: 1263929888}
-  - component: {fileID: 1263929895}
-  - component: {fileID: 1263929896}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -745,28 +755,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1263929895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1263929887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a38054e9dacee4e94b454bb7da7c18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1263929896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1263929887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13241ed6ababebd4da15d9e2a887ea99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2038746534
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class ModePicker : MonoBehaviour
 
     private Scenario CurrentScenario;
     public List<GameObject> Prefabs;
-    public EditorCursor CursorPrefab;
+    public GameObject CursorPrefab;
     private EditorCursor EditorCursor;
     private Dictionary<string, IEditorMode> Modes;
     private IEditorMode CurrentMode;
@@ -20,13 +20,13 @@ public class ModePicker : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        EditorCursor = Instantiate(CursorPrefab);
+        //EditorCursor = Instantiate(CursorPrefab);
 
-        Modes = new Dictionary<string, IEditorMode>();
-        Modes.Add("Cursor", new EditorCursorMode(EditorCursor));
-        Modes.Add("Move", new MoveMode(Camera.main));
+        //Modes = new Dictionary<string, IEditorMode>();
+        //Modes.Add("Cursor", new EditorCursorMode(EditorCursor));
+        //Modes.Add("Move", new MoveMode(Camera.main));
 
-        ChangeEditorMode("Cursor");    
+        //ChangeEditorMode("Cursor");    
     }
 
     // Update is called once per frame

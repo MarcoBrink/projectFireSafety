@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingManager : MonoBehaviour {
 	//De objecten om de settings mee aan te passen
@@ -115,5 +116,14 @@ public class SettingManager : MonoBehaviour {
 
 	//In het dropdown menu de juiste waarde laten zien
         resolutionDropdown.RefreshShownValue();
+    }
+
+    /// <summary>
+    /// Back to the main menu.
+    /// </summary>
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
     }
 }

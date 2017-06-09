@@ -12,6 +12,9 @@ using Assets.Scripts.PVRSEditor;
 /// </summary>
 public class EditorManager : MonoBehaviour
 {
+    // Assigned in inspector.
+    private Canvas Objectmenu;
+
     /// <summary>
     /// The current scenario.
     /// </summary>
@@ -168,5 +171,13 @@ public class EditorManager : MonoBehaviour
 
         // The new mode needs to be enabled on startup.
         CurrentMode.Enable();
+    }
+
+    
+
+    public void ToggleObject()
+    {
+        Objectmenu = GetComponent<Canvas>();
+        Objectmenu.enabled = !Objectmenu.enabled;
     }
 }
