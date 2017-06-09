@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Assets.Scripts;
 
 /// <summary>
@@ -80,8 +77,10 @@ public class EditorCursor : MonoBehaviour
             {
                 // Collisions are kept track of in the WireFrameScript.
                 GameObject cursorObject = transform.GetChild(0).gameObject;
-                WireframeScript wireFrame = cursorObject.GetComponent<WireframeScript>();
-                if (!wireFrame.collides)
+
+                // This is stored in the collisionscript.
+                CursorCollision collision = cursorObject.GetComponent<CursorCollision>();
+                if (!collision.Collides)
                 {
                     canPlace = true;
                 }
@@ -274,9 +273,7 @@ public class EditorCursor : MonoBehaviour
             // The cursor is placed at the right position.
             copy.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
-            // The wireframe script is added to the object to make it clear whether or not it can be placed.
-            WireframeScript wireframe = copy.AddComponent<WireframeScript>();
-            wireframe.render_mesh_normally = true;
+            CursorCollision col = copy.AddComponent<CursorCollision>();
 
             // The cursor is placed in layer 8, which is ignored by several raycasts in other related code.
             copy.layer = 8;

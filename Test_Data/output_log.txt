@@ -1,0 +1,66 @@
+Initialize engine version: 5.6.0f3 (497a0f351392)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 940M      (ID=0x1347)
+    Vendor:   NVIDIA
+    VRAM:     1996 MB
+    Driver:   10.18.13.5946
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.122 seconds
+Platform assembly: C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Public\Documents\Unity Projects\VR-Fire-Safety\Test_Data\Managed\System.dll (this message is harmless)
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initialized touch support.
+UnloadTime: 1.575398 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1e18 -> priority: 1 
+  Thread -> id: 3eb8 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.831735 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 412.
+Total: 0.349091 ms (FindLiveObjects: 0.026064 ms CreateObjectMapping: 0.017091 ms MarkObjects: 0.282435 ms  DeleteObjects: 0.023073 ms)
+
+ArgumentException: The Object you want to instantiate is null.
+  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Object.Instantiate[EditorCursor] (.EditorCursor original) [0x00000] in <filename unknown>:0 
+  at ModePicker.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.563007 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 311.
+Total: 0.269189 ms (FindLiveObjects: 0.034182 ms CreateObjectMapping: 0.022646 ms MarkObjects: 0.200396 ms  DeleteObjects: 0.011536 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.404638 ms
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 329.
+Total: 0.259789 ms (FindLiveObjects: 0.032473 ms CreateObjectMapping: 0.015382 ms MarkObjects: 0.187150 ms  DeleteObjects: 0.024355 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.452921 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 311.
+Total: 0.224324 ms (FindLiveObjects: 0.031619 ms CreateObjectMapping: 0.014954 ms MarkObjects: 0.159804 ms  DeleteObjects: 0.017518 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.358919 ms
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 295.
+Total: 0.197405 ms (FindLiveObjects: 0.021791 ms CreateObjectMapping: 0.017518 ms MarkObjects: 0.136731 ms  DeleteObjects: 0.020936 ms)
+
