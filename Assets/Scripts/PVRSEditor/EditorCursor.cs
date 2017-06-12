@@ -278,7 +278,7 @@ public class EditorCursor : MonoBehaviour
             // The cursor is placed at the right position.
             copy.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
-            CursorCollision col = copy.AddComponent<CursorCollision>();
+            copy.AddComponent<CursorCollision>();
 
             // The cursor is placed in layer 8, which is ignored by several raycasts in other related code.
             copy.layer = 8;

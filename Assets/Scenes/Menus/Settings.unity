@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 116304006}
   - component: {fileID: 116304007}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: BrightnessSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 241046436}
   - component: {fileID: 241046437}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: MuteToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -957,7 +957,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d36a484f8219cb64aaca08fc86dc121e, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1353,7 +1353,6 @@ GameObject:
   - component: {fileID: 816951970}
   - component: {fileID: 816951969}
   - component: {fileID: 816951968}
-  - component: {fileID: 816951973}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1431,17 +1430,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &816951973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 816951967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a38054e9dacee4e94b454bb7da7c18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &853845446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,7 +1933,7 @@ GameObject:
   - component: {fileID: 1056043465}
   - component: {fileID: 1056043464}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: ResolutionDropDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2489,7 +2477,7 @@ GameObject:
   - component: {fileID: 1313838372}
   - component: {fileID: 1313838373}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: FullscreenToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3039,6 +3027,7 @@ GameObject:
   - component: {fileID: 1500279236}
   - component: {fileID: 1500279235}
   - component: {fileID: 1500279234}
+  - component: {fileID: 1500279238}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -3124,6 +3113,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1500279238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1500279233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee7f4a40cc111d4ba6cb5fe0a9caeef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullscreenToggle: {fileID: 1313838373}
+  resolutionDropdown: {fileID: 1056043464}
+  volumeSlider: {fileID: 1841793707}
+  muteVolumeToggle: {fileID: 241046437}
+  brightnessSlider: {fileID: 116304007}
+  applyButton: {fileID: 1121851654}
+  audioSource: {fileID: 611721866}
 --- !u!1 &1741519492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,7 +3359,7 @@ GameObject:
   - component: {fileID: 1841793706}
   - component: {fileID: 1841793707}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: VolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
