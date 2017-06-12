@@ -11,7 +11,6 @@ public class PopUpScript : MonoBehaviour {
     public void CloseApplication()
     {
         Application.Quit();
-
     }
 
     /// <summary>

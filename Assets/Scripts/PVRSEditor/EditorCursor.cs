@@ -176,10 +176,12 @@ public class EditorCursor : MonoBehaviour
         int layerMask = 0 >> 8;
         layerMask = ~layerMask;
 
+        // Get the position of any obstacles in the way.
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
+            // Place the item on the surface of the object.
             Collider collider = hit.collider;
             Vector3 pos = GetCollisionPos(hit);
             this.transform.position = pos;
@@ -280,8 +282,6 @@ public class EditorCursor : MonoBehaviour
 
             // The cursor is placed in layer 8, which is ignored by several raycasts in other related code.
             copy.layer = 8;
-
-            Debug.Log("Cursor Object changed to: " + this.transform.GetChild(0).gameObject.name);
         }
     }
 

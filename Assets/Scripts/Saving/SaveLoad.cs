@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 using Assets.Scripts.VRScenario;
-using System.Linq;
 
 namespace Assets.Scripts.Saving
 {
@@ -22,6 +19,16 @@ namespace Assets.Scripts.Saving
         private static string Auth = "Provrex";
 
         /// <summary>
+        /// The current scenario.
+        /// </summary>
+        public static Scenario CurrentScenario;
+
+        /// <summary>
+        /// The path of the current scenario.
+        /// </summary>
+        public static string CurrentPath;
+
+        /// <summary>
         /// The directory where scenarios are saved.
         /// </summary>
         public static string SaveDirectory = Application.persistentDataPath + "/Scenarios";
@@ -29,7 +36,7 @@ namespace Assets.Scripts.Saving
         /// <summary>
         /// The file type for scenarios. Currently allows lowercase and uppercase for the filetype.
         /// </summary>
-        private static string[] ScenarioFileType = new string[]{"pvrs", "PVRS"};
+        private static string ScenarioFileType = ".pvrs";
 
         /// <summary>
         /// For saving and loading to work at all, the directory needs to exist.
@@ -56,7 +63,7 @@ namespace Assets.Scripts.Saving
             // Check the files for validity. Needs more checks later, security checks for instance.
             foreach (string path in foundFiles)
             {
-                if (Path.GetExtension(path) == ".pvrs")
+                if (Path.GetExtension(path) == ScenarioFileType)
                 {
                     string filename = Path.GetFileNameWithoutExtension(path);
                     validFiles.Add(filename);
@@ -71,48 +78,54 @@ namespace Assets.Scripts.Saving
         /// </summary>
         /// <param name="fileName">The name of the scenario to load.</param>
         /// <returns>A scenario object with all required data.</returns>
-        public static Scenario LoadSavedScenario(string fileName)
+        public static bool LoadSavedScenario(string filePath, out Scenario scenario)
         {
-            Scenario scenario = null;
+            bool valid = false;
+            scenario = null;
 
-            // Original path for the filename.
-            string path = GetFilePath(fileName);
-
-            // Debug code to indicate that the file doesn't exist. Needs some real warning.
-            if (!File.Exists(path))
+            if (File.Exists(filePath))
             {
-                Debug.Log("Scenario file doesn't exist;" + path);
+                if (Path.GetExtension(filePath) == ScenarioFileType)
+                {
+                    FileStream stream = null;
+
+                    try
+                    {
+                        // Open the file.
+                        stream = File.Open(filePath, FileMode.Open);
+                        BinaryFormatter formatter = new BinaryFormatter();
+
+                        // Deserialize the data.
+                        PVRS data = (PVRS)formatter.Deserialize(stream);
+
+                        // Convert the data to a scenario object.
+                        scenario = data.GetScenario(Auth);
+
+                        valid = true;
+                        CurrentPath = filePath;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Debug code for file loading, needs permanent solution.
+                        Debug.Log(ex.Message);
+
+                        valid = false;
+                    }
+                    finally
+                    {
+                        // Stream needs to be closed and disposed to prevent memory leaks.
+                        stream.Close();
+                        stream.Dispose();
+                    }
+                }
             }
-            else
+
+            if (!valid)
             {
-                FileStream stream = null;
-
-                try
-                {
-                    // Open the file.
-                    stream = File.Open(path, FileMode.Open);
-                    BinaryFormatter formatter = new BinaryFormatter();
-
-                    // Deserialize the data.
-                    PVRS data = (PVRS)formatter.Deserialize(stream);
-
-                    // Convert the data to a scenario object.
-                    scenario = data.GetScenario(Auth);
-                }
-                catch (Exception ex)
-                {
-                    // Debug code for file loading, needs permanent solution.
-                    Debug.Log(ex.Message);
-                }
-                finally
-                {
-                    // Stream needs to be closed and disposed to prevent memory leaks.
-                    stream.Close();
-                    stream.Dispose();
-                }
+                scenario = null;
             }
 
-            return scenario;
+            return valid;
         }
 
         /// <summary>
@@ -120,8 +133,10 @@ namespace Assets.Scripts.Saving
         /// </summary>
         /// <param name="filename">The name with which to save the scenario.</param>
         /// <param name="scenario">The scenario object to save.</param>
-        public static void SaveScenario(Scenario scenario)
+        public static bool SaveScenario(Scenario scenario, string Path)
         {
+            bool successful = false;
+
             // The scenario object needs to be converted to serializable data first.
             PVRS data = new PVRS(Auth, scenario);
 
@@ -129,10 +144,12 @@ namespace Assets.Scripts.Saving
 
             try
             {
-                stream = File.Create(GetFilePath(scenario.Name));
+                stream = File.Create(Path);
                 BinaryFormatter formatter = new BinaryFormatter();
 
                 formatter.Serialize(stream, data);
+                CurrentPath = Path;
+                successful = true;
             }
             catch (Exception ex)
             {
@@ -145,6 +162,8 @@ namespace Assets.Scripts.Saving
                 stream.Close();
                 stream.Dispose();
             }
+
+            return successful;
         }
 
         /// <summary>
@@ -154,24 +173,7 @@ namespace Assets.Scripts.Saving
         /// <returns>The path on disk for the scenario.</returns>
         public static string GetFilePath(string fileName)
         {
-            return SaveDirectory + "/" + fileName + ".pvrs";
-        }
-
-        /// <summary>
-        /// Hash a string. Used to hash the auth string. Doesn't work lol.
-        /// </summary>
-        /// <param name="toHash">The string to hash.</param>
-        /// <returns>The hash belonging to the string.</returns>
-        private static string Hash(string toHash)
-        {
-            string result = "";
-
-            using (SHA512 hasher = SHA512Managed.Create())
-            {
-                result = String.Concat(hasher.ComputeHash(Encoding.UTF8.GetBytes(toHash)).Select(item => item.ToString("x2")));
-            }
-
-            return result;
+            return SaveDirectory + "/" + fileName + ScenarioFileType;
         }
     }
 }

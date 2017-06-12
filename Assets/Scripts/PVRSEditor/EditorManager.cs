@@ -14,6 +14,21 @@ using Assets.Scripts.PVRSEditor;
 public class EditorManager : MonoBehaviour
 {
     /// <summary>
+    /// The current scenario. Equal to the scenario stored by SaveLoad.
+    /// </summary>
+    public static Scenario CurrentScenario
+    {
+        get
+        {
+            return SaveLoad.CurrentScenario;
+        }
+        private set
+        {
+            SaveLoad.CurrentScenario = value;
+        }
+    }
+
+    /// <summary>
     /// The Canvases used by the UI. Assigned in Unity Editor.
     /// </summary>
     public GameObject[] Menus;
@@ -22,11 +37,6 @@ public class EditorManager : MonoBehaviour
     /// Used to fill the object view.
     /// </summary>
     public ObjectPanel PanelPrefab;
-
-    /// <summary>
-    /// The current scenario.
-    /// </summary>
-    public static Scenario CurrentScenario;
 
     /// <summary>
     /// The prefab used for the cursor, set in the Unity Editor.
@@ -53,41 +63,26 @@ public class EditorManager : MonoBehaviour
     /// </summary>
     void Start ()
     {
-        //The modes need to be made next, so they can be used by the editor.
-        Modes = new Dictionary<string, IEditorMode>();
-        IEditorMode cursorMode = new EditorCursorMode(CursorPrefab);
-        Modes.Add(cursorMode.ToString(), cursorMode);
-        IEditorMode movementMode = new MoveMode(Camera.main);
-        Modes.Add(movementMode.ToString(), movementMode);
-        IEditorMode selectionMode = new SelectionMode(CursorPrefab);
-        Modes.Add(selectionMode.ToString(), selectionMode);
+        //The modes need to be made, so they can be used by the editor.
+        CreateModes();
 
+        // The object menu needs to be hidden.
         HideMenus();
 
-        UnityEngine.UI.ScrollRect scrollView = FindObjectOfType<UnityEngine.UI.ScrollRect>();
-        foreach (GameObject prefab in PrefabManager.Prefabs)
-        {
-            ObjectPanel panel = Instantiate(PanelPrefab);
-            panel.ObjectPrefab = prefab.name;
-            panel.transform.SetParent(scrollView.content, false);
-        }
+        // The object menu needs to be populated with prefabs.
+        PopulateObjectMenu();
 
         // Some loading test code, needs to be changed.
         #region TestLoading
-        string[] savedScenarios = SaveLoad.GetSavedScenarios(SaveLoad.SaveDirectory);
-
-        if (savedScenarios.Length == 0)
+        if (CurrentScenario == null)
         {
-            CurrentScenario = new Scenario("Test", new Vector2(50, 50));
-        }
-        else
-        {
-            CurrentScenario = SaveLoad.LoadSavedScenario(savedScenarios[0]);
+            Scenario newScenario = new Scenario("new", new Vector2(200, 400));
+            CurrentScenario = newScenario;
         }
         #endregion
 
         // After the current scenario is loaded.
-        LoadScenario(CurrentScenario);
+        LoadScenario(SaveLoad.CurrentScenario);
 
         ChangeEditorMode("Cursor");
     }
@@ -129,9 +124,6 @@ public class EditorManager : MonoBehaviour
             Destroy(currentObject);
         }
 
-        // Temp code, does nothing.
-        GameObject floor = GameObject.FindGameObjectWithTag("Floor");
-
         // All objects are spawned in a loop.
         foreach (ScenarioObject scenarioObject in scenario.Objects)
         {
@@ -151,7 +143,7 @@ public class EditorManager : MonoBehaviour
             }
         }
 
-        CurrentScenario = scenario;
+        SaveLoad.CurrentScenario = scenario;
     }
 
     /// <summary>
@@ -231,7 +223,7 @@ public class EditorManager : MonoBehaviour
         // Disable the current mode to save changes.
         CurrentMode.Disable();
 
-        SaveLoad.SaveScenario(CurrentScenario);
+        SaveLoad.SaveScenario(SaveLoad.CurrentScenario, SaveLoad.GetFilePath(CurrentScenario.Name));
 
         // Restore the current mode.
         CurrentMode.Enable();
@@ -253,7 +245,11 @@ public class EditorManager : MonoBehaviour
     /// </summary>
     public void LoadCurrentScenario()
     {
-        LoadScenario(SaveLoad.LoadSavedScenario(CurrentScenario.Name));
+        Scenario scenario;
+        if (SaveLoad.LoadSavedScenario(SaveLoad.CurrentPath, out scenario))
+        {
+            LoadScenario(scenario);
+        }
     }
 
     /// <summary>
@@ -270,5 +266,33 @@ public class EditorManager : MonoBehaviour
 
         EditorCursorMode cursMode = CurrentMode as EditorCursorMode;
         cursMode.CurrentPrefabName = name;
+    }
+
+    /// <summary>
+    /// Instantiate all modes, used in EditorManager.Start().
+    /// </summary>
+    private void CreateModes()
+    {
+        Modes = new Dictionary<string, IEditorMode>();
+        IEditorMode cursorMode = new EditorCursorMode(CursorPrefab);
+        Modes.Add(cursorMode.ToString(), cursorMode);
+        IEditorMode movementMode = new MoveMode(Camera.main);
+        Modes.Add(movementMode.ToString(), movementMode);
+        IEditorMode selectionMode = new SelectionMode(CursorPrefab);
+        Modes.Add(selectionMode.ToString(), selectionMode);
+    }
+
+    /// <summary>
+    /// Populate the object menu with all prefabs in Resources/Prefabs.
+    /// </summary>
+    private void PopulateObjectMenu()
+    {
+        UnityEngine.UI.ScrollRect scrollView = FindObjectOfType<UnityEngine.UI.ScrollRect>();
+        foreach (GameObject prefab in PrefabManager.Prefabs)
+        {
+            ObjectPanel panel = Instantiate(PanelPrefab);
+            panel.ObjectPrefab = prefab.name;
+            panel.transform.SetParent(scrollView.content, false);
+        }
     }
 }
