@@ -63,6 +63,30 @@ namespace Assets.Scripts.VRScenario
             ScenarioObject newObject = new ScenarioObject(prefabName, gameObject);
             Objects.Add(newObject);
         }
+
+        /// <summary>
+        /// Remove and discard a given Scenario Object from the Scenario.
+        /// </summary>
+        /// <param name="scenarioObject"></param>
+        public void RemoveObject(ScenarioObject scenarioObject)
+        {
+            // You can't remove null.
+            if (scenarioObject != null)
+            {
+                if (Objects.Remove(scenarioObject))
+                {
+                    Debug.Log("Object removed from tree.");
+
+                    // Destroy and discard the object.
+                    scenarioObject.Destroy();
+                    scenarioObject = null;
+                }
+                else
+                {
+                    Debug.LogError("Object to remove not found.");
+                }
+            }
+        }
     }
 
     /// <summary>

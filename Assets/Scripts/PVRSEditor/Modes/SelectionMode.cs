@@ -54,28 +54,38 @@ namespace Assets.Scripts.PVRSEditor
         public void Update()
         {
             // Don't process movement of the selected item if no item is selected.
-            if (ECursor != null)
+            if (this.ECursor != null)
             {
+                //if (this.ECursor.CurrentPrefab.name != this.SelectedObject.PrefabName)
+                //{
+                //    this.ECursor.ChangePrefab(this.SelectedObject.PrefabName);
+                //}
+
                 // Move only if the input has changed, this is more efficiënt.
                 if (Input.GetAxis("Horizontal") != 0F)
                 {
-                    ECursor.Move("Horizontal");
+                    this.ECursor.Move("Horizontal");
                 }
 
                 if (Input.GetAxis("Vertical") != 0F)
                 {
-                    ECursor.Move("Vertical");
+                    this.ECursor.Move("Vertical");
                 }
 
                 if (Input.GetAxis("UpDown") != 0F)
                 {
-                    ECursor.Move("UpDown");
+                    this.ECursor.Move("UpDown");
                 }
 
                 // Only rotate when actual rotation took place.
                 if (Input.GetAxis("RotateX") != 0F || Input.GetAxis("RotateY") != 0F || Input.GetAxis("RotateZ") != 0F)
                 {
-                    ECursor.Rotate();
+                    this.ECursor.Rotate();
+                }
+
+                if(Input.GetKeyDown(KeyCode.Delete))
+                {
+                    DestroyObject();
                 }
             }
 
@@ -117,10 +127,10 @@ namespace Assets.Scripts.PVRSEditor
 
                 // Use a cursor to track the position.
                 this.ECursor = Object.Instantiate(ECursorPrefab);
-                ECursor.ChangePrefab(newObject.PrefabName);
-                ECursor.Position = newObject.Position;
-                ECursor.Rotation = newObject.Rotation;
-                ECursor.transform.localScale = Vector3.one;
+                this.ECursor.ChangePrefab(newObject.PrefabName);
+                this.ECursor.Position = newObject.Position;
+                this.ECursor.Rotation = newObject.Rotation;
+                this.ECursor.transform.localScale = Vector3.one;
 
                 // If the object has any colliders, they need to be disabled for now.
                 Collider[] objectColliders = newObject.Object.GetComponents<Collider>();
@@ -134,7 +144,7 @@ namespace Assets.Scripts.PVRSEditor
 
                 // There was a problem with rigidbodies that continued to sleep even when something they were resting on was selected.
                 // All colliders within a range of 35 are selected.
-                Collider[] colliders = Physics.OverlapBox(ECursor.Position, Vector3.one * 35);
+                Collider[] colliders = Physics.OverlapBox(this.ECursor.Position, Vector3.one * 10);
 
                 // Then, each collider's GameObject is checked for a rigidbody.
                 foreach (Collider collider in colliders)
@@ -162,14 +172,15 @@ namespace Assets.Scripts.PVRSEditor
         /// </summary>
         private void DeselectObject()
         {
-            if (SelectedObject != null)
+            if (SelectedObject != null && ECursor != null)
             {
                 // Save the position and rotation of the cursor.
-                Vector3 newPos = ECursor.Position;
-                Quaternion newRot = ECursor.Rotation;
+                Vector3 newPos = this.ECursor.Position;
+                Quaternion newRot = this.ECursor.Rotation;
 
                 // The cursor is no longer needed.
-                Object.Destroy(ECursor.gameObject);
+                Object.Destroy(this.ECursor.gameObject);
+                this.ECursor = null;
                 
                 // Set the object's position and rotation to the right values and show it by resetting its scale to one.
                 SelectedObject.Position = newPos;
@@ -225,6 +236,19 @@ namespace Assets.Scripts.PVRSEditor
             }
 
             return foundObject;
+        }
+
+        /// <summary>
+        /// Destroy the currently selected object to remove it from the scenario.
+        /// </summary>
+        private void DestroyObject()
+        {
+            // Remove the object.
+            EditorManager.CurrentScenario.RemoveObject(SelectedObject);
+
+            // The cursor is no longer needed.
+            Object.Destroy(this.ECursor.gameObject);
+            this.ECursor = null;
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ public class EditorManager : MonoBehaviour
     /// <summary>
     /// The Canvases used by the UI. Assigned in Unity Editor.
     /// </summary>
-    public Canvas[] Menus;
+    public GameObject[] Menus;
 
     /// <summary>
     /// Used to fill the object view.
@@ -88,6 +88,8 @@ public class EditorManager : MonoBehaviour
 
         // After the current scenario is loaded.
         LoadScenario(CurrentScenario);
+
+        ChangeEditorMode("Cursor");
     }
 
     /// <summary>
@@ -150,8 +152,28 @@ public class EditorManager : MonoBehaviour
         }
 
         CurrentScenario = scenario;
+    }
 
-        ChangeEditorMode("Cursor");
+    /// <summary>
+    /// Change the editor mode according to the ID of the dropdown menu.
+    /// </summary>
+    public void DropDownChangeEditorMode()
+    {
+        int modeID = FindObjectOfType<UnityEngine.UI.Dropdown>().value;
+        string mode = "";
+
+        switch (modeID)
+        {
+            case 0:
+                mode = "Cursor";
+                break;
+            case 1:
+                mode = "Selection";
+                break;
+        }
+
+        ChangeEditorMode(mode);
+
     }
 
     /// <summary>
@@ -178,14 +200,14 @@ public class EditorManager : MonoBehaviour
     /// <param name="menuIndex">The index of the menu in the Menus array.</param>
     public void ToggleMenu(int menuIndex)
     {
-        Canvas Menu = Menus[menuIndex];
-        if (Menu.enabled)
+        GameObject Menu = Menus[menuIndex];
+        if (Menu.transform.localScale != Vector3.zero)
         {
-            Menu.enabled = false;
+            Menu.transform.localScale = Vector3.zero;
         }
         else
         {
-            Menu.enabled = true;
+            Menu.transform.localScale = Vector3.one;
         }
     }
 

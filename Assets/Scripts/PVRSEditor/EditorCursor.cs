@@ -103,7 +103,10 @@ public class EditorCursor : MonoBehaviour
 	void Start ()
     {
         string firstPrefabName = PrefabManager.Prefabs[0].name;
-        ChangePrefab(firstPrefabName);
+        if (CurrentPrefab == null)
+        {
+            ChangePrefab(firstPrefabName);
+        }
     }
 
     /// <summary>
@@ -277,6 +280,8 @@ public class EditorCursor : MonoBehaviour
 
             // The cursor is placed in layer 8, which is ignored by several raycasts in other related code.
             copy.layer = 8;
+
+            Debug.Log("Cursor Object changed to: " + this.transform.GetChild(0).gameObject.name);
         }
     }
 
