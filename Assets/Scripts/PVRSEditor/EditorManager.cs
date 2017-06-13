@@ -288,10 +288,11 @@ public class EditorManager : MonoBehaviour
     private void PopulateObjectMenu()
     {
         UnityEngine.UI.ScrollRect scrollView = FindObjectOfType<UnityEngine.UI.ScrollRect>();
-        foreach (GameObject prefab in PrefabManager.Prefabs)
+        foreach (PrefabManager.Prefab prefab in PrefabManager.Prefabs)
         {
             ObjectPanel panel = Instantiate(PanelPrefab);
-            panel.ObjectPrefab = prefab.name;
+            panel.ObjectPrefab = prefab.Name;
+            panel.Thumbnail.sprite = prefab.Thumbnail;
             panel.transform.SetParent(scrollView.content, false);
         }
     }

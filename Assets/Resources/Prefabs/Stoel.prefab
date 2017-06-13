@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1341301322915612}
+  m_RootGameObject: {fileID: 1622187322894934}
   m_IsPrefabParent: 1
---- !u!1 &1341301322915612
+--- !u!1 &1622187322894934
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4906802563287226}
-  - component: {fileID: 33975016732837326}
-  - component: {fileID: 65686710928388300}
-  - component: {fileID: 23832879769956376}
-  - component: {fileID: 54934664992930746}
+  - component: {fileID: 4836739882045946}
+  - component: {fileID: 33193459855993346}
+  - component: {fileID: 23046946913812082}
+  - component: {fileID: 64223409159582154}
+  - component: {fileID: 54044791228187420}
   m_Layer: 0
-  m_Name: Block
+  m_Name: Stoel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4906802563287226
+--- !u!4 &4836739882045946
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341301322915612}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 2.82, z: 1.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1622187322894934}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 10.449647, y: 2.4868023, z: -15.6474695}
+  m_LocalScale: {x: 1.4285218, y: 1.3482713, z: 0.07352324}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23832879769956376
+--- !u!23 &23046946913812082
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341301322915612}
+  m_GameObject: {fileID: 1622187322894934}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7abb7f2f6d3415a4aa1f346d5022c930, type: 2}
+  - {fileID: 2100000, guid: 739d91d1bf70dd543afe52059192f3a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_SelectedEditorRenderState: 3
@@ -75,19 +75,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33975016732837326
+--- !u!33 &33193459855993346
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341301322915612}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54934664992930746
+  m_GameObject: {fileID: 1622187322894934}
+  m_Mesh: {fileID: 4300000, guid: 042bf1d02ecfef14d9e21c76114f424c, type: 3}
+--- !u!54 &54044791228187420
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341301322915612}
+  m_GameObject: {fileID: 1622187322894934}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -97,15 +97,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65686710928388300
-BoxCollider:
+--- !u!64 &64223409159582154
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341301322915612}
+  m_GameObject: {fileID: 1622187322894934}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 042bf1d02ecfef14d9e21c76114f424c, type: 3}
