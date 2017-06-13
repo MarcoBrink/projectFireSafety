@@ -9,29 +9,20 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1809382484787558}
+  m_RootGameObject: {fileID: 1069804647698762}
   m_IsPrefabParent: 1
---- !u!1 &1809382484787558
+--- !u!1 &1069804647698762
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-<<<<<<< HEAD:Assets/Resources/Prefabs/Tafel.prefab
-  - component: {fileID: 4895617068154218}
-  - component: {fileID: 33972910721812744}
-  - component: {fileID: 23055470562045786}
-  - component: {fileID: 64412658242904038}
-  - component: {fileID: 54806116552354540}
-=======
-  - component: {fileID: 4623837071025562}
-  - component: {fileID: 33228873688838682}
-  - component: {fileID: 136153174939683660}
-  - component: {fileID: 23082631834175380}
-  - component: {fileID: 54641534865302278}
-  - component: {fileID: 114492078554585926}
->>>>>>> origin/master:Assets/Resources/Prefabs/Cylinder.prefab
+  - component: {fileID: 4404375302437024}
+  - component: {fileID: 33131173259163714}
+  - component: {fileID: 23984911749247948}
+  - component: {fileID: 64304066757117944}
+  - component: {fileID: 54203754275997456}
   m_Layer: 0
   m_Name: Tafel
   m_TagString: Untagged
@@ -39,25 +30,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4895617068154218
+--- !u!4 &4404375302437024
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809382484787558}
+  m_GameObject: {fileID: 1069804647698762}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7.132347, y: 4.2628765, z: -13.533185}
+  m_LocalPosition: {x: 0.0939977, y: 4.2318, z: -0.3724609}
   m_LocalScale: {x: 3.045377, y: 4.3912454, z: 0.20307453}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23055470562045786
+--- !u!23 &23984911749247948
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809382484787558}
+  m_GameObject: {fileID: 1069804647698762}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -65,11 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-<<<<<<< HEAD:Assets/Resources/Prefabs/Tafel.prefab
   - {fileID: 2100000, guid: 39bde3f9d8bf4ef449a0114b9bf45f19, type: 2}
-=======
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
->>>>>>> origin/master:Assets/Resources/Prefabs/Cylinder.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,19 +75,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33972910721812744
+--- !u!33 &33131173259163714
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809382484787558}
+  m_GameObject: {fileID: 1069804647698762}
   m_Mesh: {fileID: 4300000, guid: 3865283963b7d37408dcc3c0065303c1, type: 3}
---- !u!54 &54806116552354540
+--- !u!54 &54203754275997456
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809382484787558}
+  m_GameObject: {fileID: 1069804647698762}
   serializedVersion: 2
   m_Mass: 4
   m_Drag: 0
@@ -110,28 +97,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
-<<<<<<< HEAD:Assets/Resources/Prefabs/Tafel.prefab
---- !u!64 &64412658242904038
+--- !u!64 &64304066757117944
 MeshCollider:
-=======
---- !u!114 &114492078554585926
-MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1300297387605938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52446f876970494419a8823e9a51bdac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!136 &136153174939683660
-CapsuleCollider:
->>>>>>> origin/master:Assets/Resources/Prefabs/Cylinder.prefab
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809382484787558}
+  m_GameObject: {fileID: 1069804647698762}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

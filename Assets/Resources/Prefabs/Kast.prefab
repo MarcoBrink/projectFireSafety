@@ -9,29 +9,20 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1581893186493668}
+  m_RootGameObject: {fileID: 1376003374649976}
   m_IsPrefabParent: 1
---- !u!1 &1581893186493668
+--- !u!1 &1376003374649976
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-<<<<<<< HEAD:Assets/Resources/Prefabs/Kast.prefab
-  - component: {fileID: 4345688185130168}
-  - component: {fileID: 33685036191942994}
-  - component: {fileID: 23314145902584324}
-  - component: {fileID: 64620244481213896}
-  - component: {fileID: 54269357947700196}
-=======
-  - component: {fileID: 4906802563287226}
-  - component: {fileID: 33975016732837326}
-  - component: {fileID: 65686710928388300}
-  - component: {fileID: 23832879769956376}
-  - component: {fileID: 114559477321217568}
-  - component: {fileID: 54934664992930746}
->>>>>>> origin/master:Assets/Resources/Prefabs/Block.prefab
+  - component: {fileID: 4473744181055198}
+  - component: {fileID: 33160979821432936}
+  - component: {fileID: 23754255678142262}
+  - component: {fileID: 64403112879675238}
+  - component: {fileID: 54221111338274200}
   m_Layer: 0
   m_Name: Kast
   m_TagString: Untagged
@@ -39,25 +30,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4345688185130168
+--- !u!4 &4473744181055198
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581893186493668}
+  m_GameObject: {fileID: 1376003374649976}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.1706812, y: 4.7822704, z: 0.6340503}
+  m_LocalPosition: {x: -0.40008643, y: 4.913759, z: 2.0491314}
   m_LocalScale: {x: 3.5057375, y: 0.16151373, z: 4.78127}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23314145902584324
+--- !u!23 &23754255678142262
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581893186493668}
+  m_GameObject: {fileID: 1376003374649976}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -65,11 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-<<<<<<< HEAD:Assets/Resources/Prefabs/Kast.prefab
-  - {fileID: 2100000, guid: e8ac5792bafa86d48917ed98d1e47749, type: 2}
-=======
-  - {fileID: 2100000, guid: 75899f8c1ca781c4491f9b4d40fc305b, type: 2}
->>>>>>> origin/master:Assets/Resources/Prefabs/Block.prefab
+  - {fileID: 2100000, guid: f8e9eb4fa7d244f4daf43ebc8708b37e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,21 +75,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33685036191942994
+--- !u!33 &33160979821432936
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581893186493668}
+  m_GameObject: {fileID: 1376003374649976}
   m_Mesh: {fileID: 4300000, guid: 609cd192a99120f4281cd6ac8e7bdd07, type: 3}
---- !u!54 &54269357947700196
+--- !u!54 &54221111338274200
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581893186493668}
+  m_GameObject: {fileID: 1376003374649976}
   serializedVersion: 2
-  m_Mass: 8
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -110,33 +97,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64620244481213896
+--- !u!64 &64403112879675238
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581893186493668}
+  m_GameObject: {fileID: 1376003374649976}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-<<<<<<< HEAD:Assets/Resources/Prefabs/Kast.prefab
   m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 609cd192a99120f4281cd6ac8e7bdd07, type: 3}
-=======
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114559477321217568
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341301322915612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52446f876970494419a8823e9a51bdac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> origin/master:Assets/Resources/Prefabs/Block.prefab

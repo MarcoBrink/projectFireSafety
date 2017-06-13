@@ -9,29 +9,20 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1622187322894934}
+  m_RootGameObject: {fileID: 1661081089745802}
   m_IsPrefabParent: 1
---- !u!1 &1622187322894934
+--- !u!1 &1661081089745802
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-<<<<<<< HEAD:Assets/Resources/Prefabs/Stoel.prefab
-  - component: {fileID: 4836739882045946}
-  - component: {fileID: 33193459855993346}
-  - component: {fileID: 23046946913812082}
-  - component: {fileID: 64223409159582154}
-  - component: {fileID: 54044791228187420}
-=======
-  - component: {fileID: 4652392445911688}
-  - component: {fileID: 33954538686041720}
-  - component: {fileID: 135921410655445038}
-  - component: {fileID: 23402498263724764}
-  - component: {fileID: 114992589480834200}
-  - component: {fileID: 54077168424743752}
->>>>>>> origin/master:Assets/Resources/Prefabs/Sphere.prefab
+  - component: {fileID: 4255995012376240}
+  - component: {fileID: 33963645962435468}
+  - component: {fileID: 23726982330521914}
+  - component: {fileID: 64020950702647586}
+  - component: {fileID: 54773005497542148}
   m_Layer: 0
   m_Name: Stoel
   m_TagString: Untagged
@@ -39,25 +30,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4836739882045946
+--- !u!4 &4255995012376240
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1622187322894934}
+  m_GameObject: {fileID: 1661081089745802}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 10.449647, y: 2.4868023, z: -15.6474695}
+  m_LocalPosition: {x: -0.010949317, y: 1.0723319, z: -1.9321966}
   m_LocalScale: {x: 1.4285218, y: 1.3482713, z: 0.07352324}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23046946913812082
+--- !u!23 &23726982330521914
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1622187322894934}
+  m_GameObject: {fileID: 1661081089745802}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -65,11 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-<<<<<<< HEAD:Assets/Resources/Prefabs/Stoel.prefab
   - {fileID: 2100000, guid: 739d91d1bf70dd543afe52059192f3a1, type: 2}
-=======
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
->>>>>>> origin/master:Assets/Resources/Prefabs/Sphere.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,19 +75,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33193459855993346
+--- !u!33 &33963645962435468
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1622187322894934}
+  m_GameObject: {fileID: 1661081089745802}
   m_Mesh: {fileID: 4300000, guid: 042bf1d02ecfef14d9e21c76114f424c, type: 3}
---- !u!54 &54044791228187420
+--- !u!54 &54773005497542148
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1622187322894934}
+  m_GameObject: {fileID: 1661081089745802}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -110,28 +97,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
-<<<<<<< HEAD:Assets/Resources/Prefabs/Stoel.prefab
---- !u!64 &64223409159582154
+--- !u!64 &64020950702647586
 MeshCollider:
-=======
---- !u!114 &114992589480834200
-MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1715712588750116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52446f876970494419a8823e9a51bdac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &135921410655445038
-SphereCollider:
->>>>>>> origin/master:Assets/Resources/Prefabs/Sphere.prefab
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1622187322894934}
+  m_GameObject: {fileID: 1661081089745802}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

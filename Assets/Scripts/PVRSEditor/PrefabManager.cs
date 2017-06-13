@@ -49,7 +49,7 @@ namespace Assets.Scripts
             prefab.Name = item.name;
             prefab.Item = item;
             Texture2D thumb = Resources.Load<Texture2D>("Thumbnails/" + item.name);
-            prefab.Thumbnail = Sprite.Create(thumb, new Rect(0, 0, 390, 390), Vector2.zero);
+            prefab.Thumbnail = Sprite.Create(thumb, new Rect(0, 0, 512, 512), Vector2.zero);
             return prefab;
         }
 

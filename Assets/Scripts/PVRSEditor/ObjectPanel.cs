@@ -37,5 +37,6 @@ public class ObjectPanel : MonoBehaviour
     {
         EditorManager manager = FindObjectOfType<EditorManager>();
         manager.ChangePrefab(ObjectPrefab);
+        manager.ToggleMenu(0);
     }
 }
