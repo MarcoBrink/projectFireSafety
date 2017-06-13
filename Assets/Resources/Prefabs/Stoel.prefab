@@ -18,11 +18,20 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
+<<<<<<< HEAD:Assets/Resources/Prefabs/Stoel.prefab
   - component: {fileID: 4836739882045946}
   - component: {fileID: 33193459855993346}
   - component: {fileID: 23046946913812082}
   - component: {fileID: 64223409159582154}
   - component: {fileID: 54044791228187420}
+=======
+  - component: {fileID: 4652392445911688}
+  - component: {fileID: 33954538686041720}
+  - component: {fileID: 135921410655445038}
+  - component: {fileID: 23402498263724764}
+  - component: {fileID: 114992589480834200}
+  - component: {fileID: 54077168424743752}
+>>>>>>> origin/master:Assets/Resources/Prefabs/Sphere.prefab
   m_Layer: 0
   m_Name: Stoel
   m_TagString: Untagged
@@ -56,7 +65,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+<<<<<<< HEAD:Assets/Resources/Prefabs/Stoel.prefab
   - {fileID: 2100000, guid: 739d91d1bf70dd543afe52059192f3a1, type: 2}
+=======
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> origin/master:Assets/Resources/Prefabs/Sphere.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,8 +110,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+<<<<<<< HEAD:Assets/Resources/Prefabs/Stoel.prefab
 --- !u!64 &64223409159582154
 MeshCollider:
+=======
+--- !u!114 &114992589480834200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1715712588750116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52446f876970494419a8823e9a51bdac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &135921410655445038
+SphereCollider:
+>>>>>>> origin/master:Assets/Resources/Prefabs/Sphere.prefab
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}

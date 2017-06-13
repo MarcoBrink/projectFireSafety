@@ -18,11 +18,20 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
+<<<<<<< HEAD:Assets/Resources/Prefabs/Tafel.prefab
   - component: {fileID: 4895617068154218}
   - component: {fileID: 33972910721812744}
   - component: {fileID: 23055470562045786}
   - component: {fileID: 64412658242904038}
   - component: {fileID: 54806116552354540}
+=======
+  - component: {fileID: 4623837071025562}
+  - component: {fileID: 33228873688838682}
+  - component: {fileID: 136153174939683660}
+  - component: {fileID: 23082631834175380}
+  - component: {fileID: 54641534865302278}
+  - component: {fileID: 114492078554585926}
+>>>>>>> origin/master:Assets/Resources/Prefabs/Cylinder.prefab
   m_Layer: 0
   m_Name: Tafel
   m_TagString: Untagged
@@ -56,7 +65,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+<<<<<<< HEAD:Assets/Resources/Prefabs/Tafel.prefab
   - {fileID: 2100000, guid: 39bde3f9d8bf4ef449a0114b9bf45f19, type: 2}
+=======
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> origin/master:Assets/Resources/Prefabs/Cylinder.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,8 +110,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+<<<<<<< HEAD:Assets/Resources/Prefabs/Tafel.prefab
 --- !u!64 &64412658242904038
 MeshCollider:
+=======
+--- !u!114 &114492078554585926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300297387605938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52446f876970494419a8823e9a51bdac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &136153174939683660
+CapsuleCollider:
+>>>>>>> origin/master:Assets/Resources/Prefabs/Cylinder.prefab
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
