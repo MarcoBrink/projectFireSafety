@@ -5,18 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Bram/Scenes/Menu.unity
     guid: b605cd841cf9d4d409326d0703f2c297
-  - enabled: 1
+  - enabled: 0
     path: Assets/Bram/Scenes/Popup.unity
     guid: 16b016ece17c99342ac6fbcd9816ceb8
   - enabled: 0
-    path: Assets/Bram/Settings.unity
-    guid: 00000000000000000000000000000000
-  - enabled: 1
+    path: 
+    guid: 654f79a9b7c72384ca9f9a1d16841ea0
+  - enabled: 0
     path: Assets/Bram/Scenes/Settings.unity
     guid: 84e1115928e966f429de63780f17494d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Editor/Editor.unity
     guid: 13ee3324a3512bf4293288504a4d631e
+  - enabled: 1
+    path: Assets/Jacco/jaccoscene.unity
+    guid: 20fadda7ccb7b5646a197263c5168772
