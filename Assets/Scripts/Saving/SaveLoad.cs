@@ -50,27 +50,52 @@ namespace Assets.Scripts.Saving
         }
 
         /// <summary>
-        /// Get the names of all currently saved scenarios.
+        /// Get all saved scenarios in a given directory.
         /// </summary>
         /// <param name="dir">The directory to search.</param>
-        /// <returns>An array of strings that describe the names of all scenarios.</returns>
-        public static string[] GetSavedScenarios(string dir)
+        /// <param name="files">The array to copy the files to.</param>
+        /// <returns>A bool indicating the success of the operation.</returns>
+        public static bool GetSavedScenarios(string dir, out string[] files)
         {
-            // Get the files first.
-            string[] foundFiles = Directory.GetFiles(dir);
-            List<string> validFiles = new List<string>();
+            bool foundAny = false;
+            files = null;
 
-            // Check the files for validity. Needs more checks later, security checks for instance.
-            foreach (string path in foundFiles)
+            string[] foundFiles;
+
+            // Get the files first.
+            try
             {
-                if (Path.GetExtension(path) == ScenarioFileType)
-                {
-                    string filename = Path.GetFileNameWithoutExtension(path);
-                    validFiles.Add(filename);
-                }
+                foundFiles = Directory.GetFiles(dir);
+            }
+            catch (Exception)
+            {
+                // The search was a failure because either the directory doesn't exist or some other error occurred.
+                foundFiles = null;
+                foundAny = false;
             }
 
-            return validFiles.ToArray();
+            // Only continue if any files were found.
+            if (foundFiles != null)
+            {
+                List<string> validFiles = new List<string>();
+
+                // Check the files for validity. Needs more checks later, security checks for instance.
+                foreach (string path in foundFiles)
+                {
+                    if (Path.GetExtension(path) == ScenarioFileType)
+                    {
+                        string filename = Path.GetFileNameWithoutExtension(path);
+                        validFiles.Add(filename);
+                    }
+                }
+
+                if (validFiles.Count != 0)
+                {
+                    files = validFiles.ToArray();
+                    foundAny = true;
+                }
+            }
+            return foundAny;
         }
 
         /// <summary>
@@ -155,6 +180,7 @@ namespace Assets.Scripts.Saving
             {
                 // Debug code for saving errors, needs permanent solution.
                 Debug.Log(ex.Message);
+                successful = false;
             }
             finally
             {
