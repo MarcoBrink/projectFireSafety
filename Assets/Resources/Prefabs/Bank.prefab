@@ -56,10 +56,10 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c8c352fcbb4814d49bec5663aeea9910, type: 2}
-  - {fileID: 2100000, guid: c8c352fcbb4814d49bec5663aeea9910, type: 2}
-  - {fileID: 2100000, guid: c8c352fcbb4814d49bec5663aeea9910, type: 2}
-  - {fileID: 2100000, guid: c8c352fcbb4814d49bec5663aeea9910, type: 2}
+  - {fileID: 2100000, guid: 17da5cd40f1e3544e82f52579b2f8a51, type: 2}
+  - {fileID: 2100000, guid: 17da5cd40f1e3544e82f52579b2f8a51, type: 2}
+  - {fileID: 2100000, guid: 17da5cd40f1e3544e82f52579b2f8a51, type: 2}
+  - {fileID: 2100000, guid: 17da5cd40f1e3544e82f52579b2f8a51, type: 2}
   - {fileID: 2100000, guid: d065aac4b8c0e2740994fdf7d1bc6ac6, type: 2}
   - {fileID: 2100000, guid: d065aac4b8c0e2740994fdf7d1bc6ac6, type: 2}
   m_StaticBatchInfo:
