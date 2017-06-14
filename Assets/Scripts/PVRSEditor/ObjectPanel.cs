@@ -19,9 +19,24 @@ public class ObjectPanel : MonoBehaviour
         }
     }
 
+    public Image Thumbnail
+    {
+        get
+        {
+            Image img = transform.GetChild(0).GetComponent<Image>();
+            return img;
+        }
+        set
+        {
+            Image img = transform.GetChild(0).GetComponent<Image>();
+            img = value;
+        }
+    }
+
     public void UseThisObject()
     {
         EditorManager manager = FindObjectOfType<EditorManager>();
         manager.ChangePrefab(ObjectPrefab);
+        manager.ToggleMenu(0);
     }
 }

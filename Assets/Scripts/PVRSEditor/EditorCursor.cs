@@ -102,7 +102,7 @@ public class EditorCursor : MonoBehaviour
     /// </summary>
 	void Start ()
     {
-        string firstPrefabName = PrefabManager.Prefabs[0].name;
+        string firstPrefabName = PrefabManager.Prefabs[0].Name;
         if (CurrentPrefab == null)
         {
             ChangePrefab(firstPrefabName);
