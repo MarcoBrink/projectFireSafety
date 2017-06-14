@@ -14,6 +14,11 @@ using Assets.Scripts.PVRSEditor;
 public class EditorManager : MonoBehaviour
 {
     /// <summary>
+    /// Assign in editor, the default environment for the Scenario.
+    /// </summary>
+    public GameObject DefaultEnvironment;
+
+    /// <summary>
     /// The current scenario. Equal to the scenario stored by SaveLoad.
     /// </summary>
     public static Scenario CurrentScenario
@@ -76,7 +81,7 @@ public class EditorManager : MonoBehaviour
         #region TestLoading
         if (CurrentScenario == null)
         {
-            Scenario newScenario = new Scenario("new", new Vector2(200, 400));
+            Scenario newScenario = new Scenario("Default", DefaultEnvironment);
             CurrentScenario = newScenario;
         }
         #endregion
@@ -123,6 +128,10 @@ public class EditorManager : MonoBehaviour
         {
             Destroy(currentObject);
         }
+
+        // Instantiate the environment first.
+        GameObject env = Instantiate(scenario.Environment);
+        env.tag = "Scenario Object";
 
         // All objects are spawned in a loop.
         foreach (ScenarioObject scenarioObject in scenario.Objects)
@@ -223,7 +232,7 @@ public class EditorManager : MonoBehaviour
         // Disable the current mode to save changes.
         CurrentMode.Disable();
 
-        SaveLoad.SaveScenario(SaveLoad.CurrentScenario, SaveLoad.GetFilePath(CurrentScenario.Name));
+        SaveLoad.SaveScenario(SaveLoad.CurrentScenario, SaveLoad.CurrentPath);
 
         // Restore the current mode.
         CurrentMode.Enable();
@@ -249,6 +258,10 @@ public class EditorManager : MonoBehaviour
         if (SaveLoad.LoadSavedScenario(SaveLoad.CurrentPath, out scenario))
         {
             LoadScenario(scenario);
+        }
+        else
+        {
+            MessagePopup.CreateMessagePopup("Laden Mislukt.", "Het laden van het huidige bestand is mislukt, het bestand is misschien niet meer beschikbaar.");
         }
     }
 

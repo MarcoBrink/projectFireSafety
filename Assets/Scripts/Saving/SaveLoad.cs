@@ -47,6 +47,8 @@ namespace Assets.Scripts.Saving
             {
                 Directory.CreateDirectory(SaveDirectory);
             }
+
+            CurrentPath = SaveDirectory + "/Default";
         }
 
         /// <summary>
@@ -108,40 +110,39 @@ namespace Assets.Scripts.Saving
             bool valid = false;
             scenario = null;
 
-            if (File.Exists(filePath))
+            string extendedPath = filePath + ScenarioFileType;
+
+            if (File.Exists(extendedPath))
             {
-                if (Path.GetExtension(filePath) == ScenarioFileType)
+                FileStream stream = null;
+
+                try
                 {
-                    FileStream stream = null;
+                    // Open the file.
+                    stream = File.Open(extendedPath, FileMode.Open);
+                    BinaryFormatter formatter = new BinaryFormatter();
 
-                    try
-                    {
-                        // Open the file.
-                        stream = File.Open(filePath, FileMode.Open);
-                        BinaryFormatter formatter = new BinaryFormatter();
+                    // Deserialize the data.
+                    PVRS data = (PVRS)formatter.Deserialize(stream);
 
-                        // Deserialize the data.
-                        PVRS data = (PVRS)formatter.Deserialize(stream);
+                    // Convert the data to a scenario object.
+                    scenario = data.GetScenario(Auth);
 
-                        // Convert the data to a scenario object.
-                        scenario = data.GetScenario(Auth);
+                    valid = true;
+                    CurrentPath = filePath;
+                }
+                catch (Exception ex)
+                {
+                    // Debug code for file loading, needs permanent solution.
+                    Debug.Log(ex.Message);
 
-                        valid = true;
-                        CurrentPath = filePath;
-                    }
-                    catch (Exception ex)
-                    {
-                        // Debug code for file loading, needs permanent solution.
-                        Debug.Log(ex.Message);
-
-                        valid = false;
-                    }
-                    finally
-                    {
-                        // Stream needs to be closed and disposed to prevent memory leaks.
-                        stream.Close();
-                        stream.Dispose();
-                    }
+                    valid = false;
+                }
+                finally
+                {
+                    // Stream needs to be closed and disposed to prevent memory leaks.
+                    stream.Close();
+                    stream.Dispose();
                 }
             }
 
@@ -158,7 +159,7 @@ namespace Assets.Scripts.Saving
         /// </summary>
         /// <param name="filename">The name with which to save the scenario.</param>
         /// <param name="scenario">The scenario object to save.</param>
-        public static bool SaveScenario(Scenario scenario, string Path)
+        public static bool SaveScenario(Scenario scenario, string path)
         {
             bool successful = false;
 
@@ -169,11 +170,12 @@ namespace Assets.Scripts.Saving
 
             try
             {
-                stream = File.Create(Path);
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+                stream = File.Create(path + ScenarioFileType);
                 BinaryFormatter formatter = new BinaryFormatter();
 
                 formatter.Serialize(stream, data);
-                CurrentPath = Path;
+                CurrentPath = path;
                 successful = true;
             }
             catch (Exception ex)
@@ -193,6 +195,40 @@ namespace Assets.Scripts.Saving
         }
 
         /// <summary>
+        /// Check if a file already exists.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static bool FileExists(string path)
+        {
+            bool exists = false;
+
+            if (File.Exists(path + ".pvrs"))
+            {
+                exists = true;
+            }
+
+            return exists;
+        }
+
+        /// <summary>
+        /// Check if a folder already exists.
+        /// </summary>
+        /// <param name="path">The path to check.</param>
+        /// <returns></returns>
+        public static bool FolderExists(string path)
+        {
+            bool exists = false;
+
+            if (Directory.Exists(path))
+            {
+                exists = true;
+            }
+
+            return exists;
+        }
+
+        /// <summary>
         /// Get the path of a scenario by filename.
         /// </summary>
         /// <param name="fileName">The name of the scenario.</param>
@@ -200,6 +236,16 @@ namespace Assets.Scripts.Saving
         public static string GetFilePath(string fileName)
         {
             return SaveDirectory + "/" + fileName + ScenarioFileType;
+        }
+
+        /// <summary>
+        /// Get the file name without the extension.
+        /// </summary>
+        /// <param name="path">The path of the file.</param>
+        /// <returns>The file name without the extension.</returns>
+        public static string GetFileName(string path)
+        {
+            return Path.GetFileNameWithoutExtension(path);
         }
     }
 }

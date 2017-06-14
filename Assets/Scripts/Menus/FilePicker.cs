@@ -68,7 +68,7 @@ public class FilePicker : MonoBehaviour
         foreach (string file in Files)
         {
             GameObject entry = Instantiate(FileEntryPrefab);
-            entry.GetComponentInChildren<Text>().text = GetDisplayPath(CurrentDirectory) + file + ".pvrs";
+            entry.GetComponentInChildren<Text>().text = GetDisplayPath(CurrentDirectory) + file;
             ScrollRect entryView = GameObject.Find("FileView").GetComponent<ScrollRect>();
             entry.transform.SetParent(entryView.content.transform, false);
         }
@@ -98,7 +98,6 @@ public class FilePicker : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Loading failed");
             MessagePopup popup = MessagePopup.CreateMessagePopup("Laden Mislukt", "Er is een fout opgetreden tijdens het laden van het opgegeven bestand. Het bestand bestaat mogelijk niet of is geen geldig Provrex VR Scenario.");
         }
     }

@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/Popup.unity
     guid: 16b016ece17c99342ac6fbcd9816ceb8
-  - enabled: 0
-    path: 
-    guid: 654f79a9b7c72384ca9f9a1d16841ea0
+  - enabled: 1
+    path: Assets/Scenes/Menus/NieuwScenario.unity
+    guid: 932f6678499b39241b891ffbd7ad2fd6
+  - enabled: 1
+    path: Assets/Scenes/Menus/Scenarios.unity
+    guid: 81050a67a87d0ff488c222dd7b1e90a4
   - enabled: 1
     path: Assets/Scenes/Menus/Settings.unity
     guid: 84e1115928e966f429de63780f17494d
@@ -23,6 +26,3 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Jacco/jaccoscene.unity
     guid: 20fadda7ccb7b5646a197263c5168772
-  - enabled: 1
-    path: Assets/Scenes/Menus/Scenarios.unity
-    guid: 00000000000000000000000000000000

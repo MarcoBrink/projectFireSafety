@@ -14,9 +14,9 @@ namespace Assets.Scripts.VRScenario
         public string Name { get; set; }
 
         /// <summary>
-        /// The x and y dimensions of the scenario.
+        /// The environment the scenario exists in.
         /// </summary>
-        public Vector2 Dimensions { get; set; }
+        public GameObject Environment { get; set; }
 
         /// <summary>
         /// The objects stored in the scenario.
@@ -28,10 +28,10 @@ namespace Assets.Scripts.VRScenario
         /// </summary>
         /// <param name="name">The name of the new scenario.</param>
         /// <param name="dimensions">The dimensions of the new scenario.</param>
-        public Scenario(string name, Vector2 dimensions)
+        public Scenario(string name, GameObject environment)
         {
             this.Name = name;
-            this.Dimensions = dimensions;
+            this.Environment = environment;
             this.Objects = new List<ScenarioObject>();
         }
 
@@ -41,10 +41,10 @@ namespace Assets.Scripts.VRScenario
         /// <param name="name">The name of the scenario.</param>
         /// <param name="dimensions">The dimensions of the scenario.</param>
         /// <param name="objects">The objects in the scenario.</param>
-        public Scenario(string name, Vector2 dimensions, ScenarioObject[] objects)
+        public Scenario(string name, GameObject environment, ScenarioObject[] objects)
         {
             this.Name = name;
-            this.Dimensions = dimensions;
+            this.Environment = environment;
             this.Objects = new List<ScenarioObject>();
 
             foreach (ScenarioObject scenarioObject in objects)
@@ -103,7 +103,7 @@ namespace Assets.Scripts.VRScenario
         /// <summary>
         /// The dimensions of the scenario.
         /// </summary>
-        private Vector2Data Dimensions;
+        private string Environment;
 
         /// <summary>
         /// The objects in the scenario.
@@ -118,7 +118,7 @@ namespace Assets.Scripts.VRScenario
         {
             // Set the name and convert the dimensions to a serializable format.
             this.Name = scenario.Name;
-            this.Dimensions = new Vector2Data(scenario.Dimensions);
+            this.Environment = scenario.Environment.name;
 
             // Convert all objects to serializable data and save them in an array to save space.
             List<ScenarioObject> objects = scenario.Objects;
@@ -142,8 +142,8 @@ namespace Assets.Scripts.VRScenario
             // Only return the scenario if the data is valid.
             if (IsValid())
             {
-                // Get a usable Vector2 for dimensions.
-                Vector2 dimensions = this.Dimensions.GetVector2();
+                // Get a usable GameObject for the environment.
+                GameObject environment = GetEnvironment();
 
                 // Create a new list for the scenario objects and fill it.
                 List<ScenarioObject> objects = new List<ScenarioObject>();
@@ -154,7 +154,7 @@ namespace Assets.Scripts.VRScenario
                 }
 
                 // Create a scenario with the given data and return it.
-                scenario = new Scenario(this.Name, dimensions, objects.ToArray());
+                scenario = new Scenario(this.Name, environment, objects.ToArray());
             }
             
             return scenario;
@@ -169,7 +169,7 @@ namespace Assets.Scripts.VRScenario
             bool valid = false;
 
             // The data is invalid if any of its contents is null.
-            if (Name != null && Dimensions != null && Objects != null)
+            if (Name != null && Environment != null && Objects != null)
             {
                 valid = true;
             }
@@ -187,42 +187,14 @@ namespace Assets.Scripts.VRScenario
 
             return valid;
         }
-    }
-
-    /// <summary>
-    /// Serializable Vector2 data.
-    /// </summary>
-    [System.Serializable]
-    public class Vector2Data
-    {
-        /// <summary>
-        /// The x value.
-        /// </summary>
-        private float X;
 
         /// <summary>
-        /// The y value.
+        /// Get the correct environment from the resources folder.
         /// </summary>
-        private float Y;
-
-        /// <summary>
-        /// Constructor for Vector2 data for serialization.
-        /// </summary>
-        /// <param name="vector">The vector to convert.</param>
-        public Vector2Data(Vector2 vector)
+        /// <returns>The environment as a game object.</returns>
+        private GameObject GetEnvironment()
         {
-            this.X = vector.x;
-            this.Y = vector.y;
-        }
-
-        /// <summary>
-        /// Convert this data to a usable Vector2.
-        /// </summary>
-        /// <returns>The corresponding Vector2.</returns>
-        public Vector2 GetVector2()
-        {
-            return new Vector2(this.X, this.Y);
+            return Resources.Load<GameObject>("Omgevingen/" + this.Environment);
         }
     }
-
 }
