@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Jacco/jaccoscene.unity
     guid: 20fadda7ccb7b5646a197263c5168772
+  - enabled: 1
+    path: Assets/Scenes/Menus/Scenarios.unity
+    guid: 00000000000000000000000000000000
