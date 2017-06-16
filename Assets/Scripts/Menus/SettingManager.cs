@@ -93,7 +93,7 @@ public class SettingManager : MonoBehaviour {
         SaveSettings();
     }
 
-	//Code om de settings mee op te slaan
+    //Code om de settings mee op te slaan
     public void SaveSettings()
     {
 	//Wordt momenteel opgeslagen als JSON data
