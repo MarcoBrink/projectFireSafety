@@ -83,7 +83,6 @@ public class SettingManager : MonoBehaviour {
 	//Aanpassen van de brightness
     public void OnBrightnessChange()
     {
-        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
         RenderSettings.ambientLight = new Color(demoSettings.rbgValue, demoSettings.rbgValue, demoSettings.rbgValue, 1);
         demoSettings.rbgValue = brightnessSlider.value;
     }
@@ -94,7 +93,7 @@ public class SettingManager : MonoBehaviour {
         SaveSettings();
     }
 
-	//Code om de settings mee op te slaan
+    //Code om de settings mee op te slaan
     public void SaveSettings()
     {
 	//Wordt momenteel opgeslagen als JSON data
