@@ -83,6 +83,7 @@ public class SettingManager : MonoBehaviour {
 	//Aanpassen van de brightness
     public void OnBrightnessChange()
     {
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
         RenderSettings.ambientLight = new Color(demoSettings.rbgValue, demoSettings.rbgValue, demoSettings.rbgValue, 1);
         demoSettings.rbgValue = brightnessSlider.value;
     }
