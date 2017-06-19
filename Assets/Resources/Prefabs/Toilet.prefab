@@ -22,10 +22,9 @@ GameObject:
   - component: {fileID: 33638025514754660}
   - component: {fileID: 23564509557580770}
   - component: {fileID: 54731492873773430}
-  - component: {fileID: 136962421423677206}
-  - component: {fileID: 65686950975422902}
-  - component: {fileID: 65485003932532186}
-  - component: {fileID: 65460140241411772}
+  - component: {fileID: 114150890994494966}
+  - component: {fileID: 114098620187782802}
+  - component: {fileID: 64161936073189612}
   m_Layer: 0
   m_Name: Toilet
   m_TagString: Untagged
@@ -40,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766499127940744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 40.539635, y: 5.4111195, z: -1.947547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,8 +99,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65460140241411772
-BoxCollider:
+--- !u!64 &64161936073189612
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,42 +109,60 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.985477, y: 0.58036804, z: 4.416275}
-  m_Center: {x: -0.054220438, y: 0.59087944, z: 0.19078827}
---- !u!65 &65485003932532186
-BoxCollider:
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: 5fe0de83812c0ac4287a4269fd7954bc, type: 3}
+--- !u!114 &114098620187782802
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766499127940744}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.985477, y: 2.6693993, z: 0.4650936}
-  m_Center: {x: -0.054220438, y: 1.8661366, z: -1.8213682}
---- !u!65 &65686950975422902
-BoxCollider:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114150890994494966
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766499127940744}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.985477, y: 0.6212244, z: 3.186432}
-  m_Center: {x: -0.054220438, y: -1.8310456, z: 0.5446625}
---- !u!136 &136962421423677206
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1766499127940744}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.77696395
-  m_Height: 2.5936394
-  m_Direction: 1
-  m_Center: {x: 0.029999971, y: -0.8960495, z: 0.14999998}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 122
+    i1: 131
+    i2: 238
+    i3: 43
+    i4: 164
+    i5: 200
+    i6: 194
+    i7: 36
+    i8: 90
+    i9: 123
+    i10: 58
+    i11: 123
+    i12: 51
+    i13: 48
+    i14: 91
+    i15: 182
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1

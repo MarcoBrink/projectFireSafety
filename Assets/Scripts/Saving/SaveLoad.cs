@@ -235,7 +235,7 @@ namespace Assets.Scripts.Saving
         /// <returns>The path on disk for the scenario.</returns>
         public static string GetFilePath(string fileName)
         {
-            return SaveDirectory + "/" + fileName + ScenarioFileType;
+            return SaveDirectory + "/" + fileName;
         }
 
         /// <summary>

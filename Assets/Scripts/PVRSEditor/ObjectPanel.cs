@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ObjectPanel : MonoBehaviour
 {
+    /// <summary>
+    /// The name of the prefab linked to this object.
+    /// </summary>
     public string ObjectPrefab
     {
         get
@@ -19,6 +22,9 @@ public class ObjectPanel : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The thumbnail image used by this object panel.
+    /// </summary>
     public Image Thumbnail
     {
         get
@@ -26,13 +32,16 @@ public class ObjectPanel : MonoBehaviour
             Image img = transform.GetChild(0).GetComponent<Image>();
             return img;
         }
-        set
+        private set
         {
-            Image img = transform.GetChild(0).GetComponent<Image>();
-            img = value;
+            // Does nothing, not used and not needed; MONO's .NET doesn't support read-only properties.
         }
     }
-
+    
+    /// <summary>
+    /// Used to tell the editor this object needs to be selected.
+    /// </summary>
+    /// Referenced in an OnClick in the Unity Editor.
     public void UseThisObject()
     {
         EditorManager manager = FindObjectOfType<EditorManager>();

@@ -89,6 +89,7 @@ namespace Assets.Scripts.PVRSEditor
                 }
             }
 
+            // Click actions shouldn't happen if the mouse is over a UI element.
             if (Input.GetMouseButtonDown(0) && !(bool)UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
                 ScenarioObject cursorObject = GetObjectAtCursor();
