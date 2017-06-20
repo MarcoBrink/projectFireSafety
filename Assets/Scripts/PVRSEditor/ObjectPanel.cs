@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ObjectPanel : MonoBehaviour
@@ -35,6 +33,8 @@ public class ObjectPanel : MonoBehaviour
         private set
         {
             // Does nothing, not used and not needed; MONO's .NET doesn't support read-only properties.
+            //We will, however, wrap things up cleanly
+            return;
         }
     }
     

@@ -61,7 +61,10 @@ public class EditorCursor : MonoBehaviour
             return bounds;
         }
         // Set does nothing because this is technically read-only, but Unity's version of C# doesn't support read-only properties.
-        set { }
+        set
+        {
+            return;
+        }
     }
 
     /// <summary>
