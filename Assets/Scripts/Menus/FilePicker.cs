@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.Saving;
@@ -88,16 +86,19 @@ public class FilePicker : MonoBehaviour
     /// </summary>
     public void LoadSelected()
     {
+        //Create a variable to hold the scenario
         Scenario scenario;
-
+        //Check if it loads...
         if (SaveLoad.LoadSavedScenario(CurrentPath, out scenario))
         {
+            //If it does, use it as CurrentScenario, load it into the editor in Single mode and set it as active
             SaveLoad.CurrentScenario = scenario;
             SceneManager.LoadScene("Editor", LoadSceneMode.Single);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("Editor"));
         }
         else
         {
+            //If it doesn't, show the user a popup something went wrong
             MessagePopup popup = MessagePopup.CreateMessagePopup("Laden Mislukt", "Er is een fout opgetreden tijdens het laden van het opgegeven bestand. Het bestand bestaat mogelijk niet of is geen geldig Provrex VR Scenario.");
         }
     }
@@ -107,6 +108,7 @@ public class FilePicker : MonoBehaviour
     /// </summary>
     public void Scan()
     {
+        //Clear the currently known list of files to prevent duplicate/illogical entries
         ClearCurrentFiles();
         
         if(SaveLoad.GetSavedScenarios(CurrentDirectory, out Files))
@@ -116,6 +118,7 @@ public class FilePicker : MonoBehaviour
         }
         else
         {
+            //Or show a popup that none were found
             MessagePopup popup = MessagePopup.CreateMessagePopup("Geen Bestanden Gevonden.", "Er zijn geen Provrex VR Scenario's gevonden in het opgegeven pad.");
         }
     }
@@ -170,6 +173,7 @@ public class FilePicker : MonoBehaviour
     /// </summary>
     public void ToMainMenu()
     {
+        //Load the main menu in Single mode and set it active
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
     }
