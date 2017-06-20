@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-struct Trigger
+﻿struct Trigger
 {
     public string Name { get; set; }
     public double TriggerTime { get; set; }

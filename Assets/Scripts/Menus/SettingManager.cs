@@ -25,10 +25,12 @@ public class SettingManager : MonoBehaviour {
 	//DemoSettings object
     public DemoSettings demoSettings;
 
-	//Als DemoSettings aangezet wordt
+	/// <summary>
+    /// Als de settings aangezet worden
+    /// </summary>
     void OnEnable()
     {
-	//Nieuw Demosettings voorwerp aanmaken
+	//Nieuw Demosettings object aanmaken
         demoSettings = new DemoSettings();
 	//Bijhouden welke instellingen er aangepast en opgeslagen worden
         fullscreenToggle.onValueChanged.AddListener(delegate { OnFullscreenToggle(); });
@@ -50,26 +52,34 @@ public class SettingManager : MonoBehaviour {
         LoadSettings();
     }
 
-	//Fullscreen aan/uit activeren
+	/// <summary>
+    /// Functie om Fullscreen aan/uit te zetten
+    /// </summary>
     public void OnFullscreenToggle()
     {
         Screen.fullScreen = demoSettings.fullscreen = fullscreenToggle.isOn;
     }
 
-	//Resolutie aanpassen
+	/// <summary>
+    /// Functie om de resolutie aan te passen
+    /// </summary>
     public void OnResolutionChange()
     {
         Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, Screen.fullScreen);
         demoSettings.resolutionIndex = resolutionDropdown.value;
     }
 
-	//Volume aanpassen
+	/// <summary>
+    /// Functie om het volume aan te passen
+    /// </summary>
     public void OnVolumeChange()
     {
         audioSource.volume = demoSettings.volume = volumeSlider.value;
     }
 
-	//Mute aan/uit activeren
+    /// <summary>
+    /// Functie om het Mute aan/uit te zetten
+    /// </summary>
     public void OnMuteVolumeToggle()
     {
         bool muted = muteVolumeToggle.isOn;
@@ -80,20 +90,26 @@ public class SettingManager : MonoBehaviour {
             audioSource.volume = demoSettings.volume;
     }
 
-	//Aanpassen van de brightness
+    /// <summary>
+    /// Functie om de helderheid aan te passen
+    /// </summary>
     public void OnBrightnessChange()
     {
         RenderSettings.ambientLight = new Color(demoSettings.rbgValue, demoSettings.rbgValue, demoSettings.rbgValue, 1);
         demoSettings.rbgValue = brightnessSlider.value;
     }
 
-	//Settings opslaan als de gebruiker tevreden is
+    /// <summary>
+    /// Functie om de opslag van de settings aan te roepen
+    /// </summary>
     public void OnApplyButtonClick()
     {
         SaveSettings();
     }
 
-    //Code om de settings mee op te slaan
+    /// <summary>
+    /// Functie om de instellingen op te slaan
+    /// </summary>
     public void SaveSettings()
     {
 	//Wordt momenteel opgeslagen als JSON data
@@ -101,7 +117,9 @@ public class SettingManager : MonoBehaviour {
         File.WriteAllText(Application.persistentDataPath + "/demosettings.json", jsonData);
     }
 
-	//Code om de settings in te laden    
+    /// <summary>
+    /// Functie om de instellingen in te laden
+    /// </summary>   
     public void LoadSettings()
     {
 	//JSON data uitlezen van de settings
@@ -119,7 +137,7 @@ public class SettingManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Back to the main menu.
+    /// Terug naar het hoofdmenu
     /// </summary>
     public void ToMainMenu()
     {
