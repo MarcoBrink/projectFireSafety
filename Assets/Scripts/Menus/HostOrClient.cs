@@ -1,14 +1,35 @@
-﻿using System;
+﻿using Assets.Scripts.Saving;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HostOrClient : MonoBehaviour {
 
     private string IP = "192.168.1.2";
     private bool IsHost = false;
+    private string ScenarioFile;
+
+    private string[] Files;
+
+    private void Start()
+    {
+        Dropdown dropDown = GameObject.Find("DropdownScenario").GetComponent<Dropdown>();
+        List<Dropdown.OptionData> dropDownList = new List<Dropdown.OptionData>();
+
+        if (SaveLoad.GetSavedScenarios(Application.persistentDataPath + "/Scenarios/", out Files))
+        {
+            foreach (string file in Files)
+            {
+                dropDownList.Add(new Dropdown.OptionData(file));
+            }             
+        }
+        dropDown.options = dropDownList;
+        ScenarioFile = Files[0];
+    }
 
     public void ToMainMenu()
     {
@@ -19,6 +40,15 @@ public class HostOrClient : MonoBehaviour {
     public void OnToggle(bool isHost)
     {
         IsHost = isHost;
+        InputField inputField = GameObject.Find("InputFieldIP").GetComponent<InputField>();
+        if (IsHost)
+        {            
+            inputField.interactable = false; 
+        }
+        else
+        {
+            inputField.interactable = true;
+        }
     }
 
     public void CheckNumbers(string str)
@@ -46,6 +76,11 @@ public class HostOrClient : MonoBehaviour {
         }
     }
 
+    public void ChangeScenario(int i)
+    {
+        ScenarioFile = Files[i];
+    }
+
     public void StartSimulatie()
     {
         GameObject go = Instantiate(new GameObject("SimulatieData"));
@@ -53,6 +88,7 @@ public class HostOrClient : MonoBehaviour {
         
         sds.IP = IP;
         sds.IsHost = IsHost;
+        sds.ScenarioFile = ScenarioFile;
         
         SceneManager.LoadScene("Simulatie", LoadSceneMode.Single);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Simulatie"));

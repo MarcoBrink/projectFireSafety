@@ -144,8 +144,11 @@ public class CustomNetworkManager : NetworkManager
     /// </summary>
     private void LoadScenario()
     {
-        Scenario scenario = SaveLoad.CurrentScenario;
+        GameObject simulationSettings = GameObject.Find("SimulatieData(Clone)");
+        SimulationDataScript sds = simulationSettings.GetComponent<SimulationDataScript>();
 
+        Scenario scenario;
+        if (SaveLoad.LoadSavedScenario(Application.persistentDataPath + "/Scenarios/" + sds.ScenarioFile, out scenario))
         if (scenario == null)
         {
             string[] saved;
@@ -164,15 +167,15 @@ public class CustomNetworkManager : NetworkManager
                 Scenario newScenario = new Scenario("Default", DefaultEnvironment);
                 scenario = newScenario;
             }
+        }
 
-            Object.Instantiate<GameObject>(scenario.Environment);
+        Object.Instantiate<GameObject>(scenario.Environment);
 
-            foreach (ScenarioObject item in scenario.Objects)
-            {
-                GameObject spawned = Instantiate<GameObject>(PrefabManager.GetPrefab(item.PrefabName), item.Position, item.Rotation);
-                spawned.tag = "Scenario Object";
-                NetworkServer.Spawn(spawned);
-            }
+        foreach (ScenarioObject item in scenario.Objects)
+        {
+            GameObject spawned = Instantiate<GameObject>(PrefabManager.GetPrefab(item.PrefabName), item.Position, item.Rotation);
+            spawned.tag = "Scenario Object";
+            NetworkServer.Spawn(spawned);
         }
     }
 }
