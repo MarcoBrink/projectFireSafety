@@ -75,15 +75,9 @@ namespace Assets.Scripts.VRScenario
             {
                 if (Objects.Remove(scenarioObject))
                 {
-                    Debug.Log("Object removed from tree.");
-
                     // Destroy and discard the object.
                     scenarioObject.Destroy();
                     scenarioObject = null;
-                }
-                else
-                {
-                    Debug.LogError("Object to remove not found.");
                 }
             }
         }
