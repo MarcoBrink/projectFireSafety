@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Saving;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,13 +7,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HostOrClient : MonoBehaviour {
-
+    //IP van de Host/Client
     private string IP = "192.168.1.2";
+    //Is wel/geen host, uitgaan van niet
     private bool IsHost = false;
+    //Variabele aanmaken om het scenario mee op te halen
     private string ScenarioFile;
-
+    //En een array aanmaken om alle benodigde files in te zetten
     private string[] Files;
 
+    /// <summary>
+    /// Initialiseren van de Class
+    /// </summary>
     private void Start()
     {
         Dropdown dropDown = GameObject.Find("DropdownScenario").GetComponent<Dropdown>();

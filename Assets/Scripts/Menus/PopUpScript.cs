@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PopUpScript : MonoBehaviour {
@@ -10,6 +8,7 @@ public class PopUpScript : MonoBehaviour {
     /// </summary>
     public void CloseApplication()
     {
+        //Afsluiten na het afhandelen van alle threads/nu lopende acties
         Application.Quit();
     }
 
@@ -18,7 +17,9 @@ public class PopUpScript : MonoBehaviour {
     /// </summary>
     public void ToMainMenu()
     {
+        //Menu scene inladen op de Single methode (sluit alle andere scenes)
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        //Menu als actieve scene zetten
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
     }
 }
