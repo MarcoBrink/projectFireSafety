@@ -56,11 +56,6 @@ namespace Assets.Scripts.PVRSEditor
             // Don't process movement of the selected item if no item is selected.
             if (this.ECursor != null)
             {
-                //if (this.ECursor.CurrentPrefab.name != this.SelectedObject.PrefabName)
-                //{
-                //    this.ECursor.ChangePrefab(this.SelectedObject.PrefabName);
-                //}
-
                 // Move only if the input has changed, this is more efficiënt.
                 if (Input.GetAxis("Horizontal") != 0F)
                 {
@@ -230,7 +225,7 @@ namespace Assets.Scripts.PVRSEditor
                         if (scenarioObject.Object.Equals(hit.transform.gameObject))
                         {
                             foundObject = scenarioObject;
-                            break;
+                            return foundObject;
                         }
                     }
                 }
