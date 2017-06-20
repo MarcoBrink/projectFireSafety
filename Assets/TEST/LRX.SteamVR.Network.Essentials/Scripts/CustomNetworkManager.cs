@@ -71,7 +71,6 @@ public class CustomNetworkManager : NetworkManager
 	void Start ()
     {
         LoadSettings();
-
         LoadPrefabs();
 
         Debug.Log ("Starting Network");
@@ -122,6 +121,14 @@ public class CustomNetworkManager : NetworkManager
     /// </summary>
     private void LoadSettings()
     {
+        GameObject simulationSettings = GameObject.Find("SimulatieData(Clone)");
+        SimulationDataScript sds = simulationSettings.GetComponent<SimulationDataScript>();
+        ShouldBeServer = sds.IsHost;
+        if(!ShouldBeServer)
+        {
+            networkAddress = sds.IP;
+        }
+
         string settingsPath = Application.dataPath + "/settings.cfg";
         if (File.Exists(settingsPath))
         {

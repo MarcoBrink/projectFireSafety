@@ -353,6 +353,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1275817259531412, guid: d9da6e7caec35b84fb1bbb9d69c6c467,
         type: 2}
+    - target: {fileID: 114000013808553712, guid: 388dc697bbb3c954bbbbdb9ed5b773ec,
+        type: 2}
+      propertyPath: ShouldBeServer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013808553712, guid: 388dc697bbb3c954bbbbdb9ed5b773ec,
+        type: 2}
+      propertyPath: m_NetworkAddress
+      value: 192.168.0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 388dc697bbb3c954bbbbdb9ed5b773ec, type: 2}
   m_IsPrefabParent: 0
