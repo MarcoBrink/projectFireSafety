@@ -72,6 +72,7 @@ public class CustomNetworkManager : NetworkManager
     {
         LoadSettings();
         LoadPrefabs();
+        LoadScenario();
 
         Debug.Log ("Starting Network");
 		if (ShouldBeServer)
@@ -82,7 +83,7 @@ public class CustomNetworkManager : NetworkManager
 		{
 			StartClient ();
 		}
-        LoadScenario();
+        
     }
 
     /// <summary>
