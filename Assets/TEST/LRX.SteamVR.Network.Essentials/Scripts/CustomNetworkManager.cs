@@ -77,13 +77,13 @@ public class CustomNetworkManager : NetworkManager
 		if (ShouldBeServer)
 		{
 			StartHost ();
-            LoadScenario();
 		}
 		else
 		{
 			StartClient ();
 		}
-	}
+        LoadScenario();
+    }
 
     /// <summary>
     /// Executes when a client connects.
