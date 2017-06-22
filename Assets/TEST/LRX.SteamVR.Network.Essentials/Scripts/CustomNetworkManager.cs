@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.Networking;
 using System.IO;
 using Assets.Scripts;
@@ -34,23 +33,23 @@ public class CustomNetworkManager : NetworkManager
 	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
 	{
 		SpawnMessage message = new SpawnMessage ();
-		message.Deserialize (extraMessageReader);
+		message.Deserialize(extraMessageReader);
 
 		bool isVrPlayer = message.isVrPlayer;
 
-		Transform spawnPoint = this.startPositions [playerCount];
+		Transform spawnPoint = this.startPositions[playerCount];
 
 		GameObject newPlayer;
         Debug.Log(isVrPlayer);
 		if (isVrPlayer)
         {
-			newPlayer = (GameObject)Instantiate (this.vrPlayerPrefab, spawnPoint.position, spawnPoint.rotation);
+			newPlayer = (GameObject)Instantiate(this.vrPlayerPrefab, spawnPoint.position, spawnPoint.rotation);
 		}
         else
         {
-			newPlayer = (GameObject)Instantiate (this.playerPrefab, spawnPoint.position, spawnPoint.rotation);
+			newPlayer = (GameObject)Instantiate(this.playerPrefab, spawnPoint.position, spawnPoint.rotation);
 		}
-		NetworkServer.AddPlayerForConnection (conn, newPlayer, playerControllerId);
+		NetworkServer.AddPlayerForConnection(conn, newPlayer, playerControllerId);
 		playerCount++;
 	}
 
@@ -67,6 +66,7 @@ public class CustomNetworkManager : NetworkManager
 
     /// <summary>
     /// Initialisation code for the Network Manager.
+    /// Checks wether to start as Host or Client
     /// </summary>
 	void Start ()
     {

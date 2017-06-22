@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FileEntry : MonoBehaviour
 {
+    //Filepath currently in use
     private string Path;
-
+    //Filepicker, starts at current Path, can be set to go elsewhere
     private FilePicker Picker;
 
-	// Use this for initialization
+	/// <summary>
+    /// Initialization function, sets variables needed to function
+    /// </summary>
 	void Start ()
     {
         this.Path = GetComponentInChildren<UnityEngine.UI.Text>().text;
