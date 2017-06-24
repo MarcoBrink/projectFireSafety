@@ -1,0 +1,146 @@
+Initialize engine version: 5.6.0f3 (497a0f351392)
+GfxDevice: creating device client; threaded=1
+VR: OpenVR Error! OpenVR failed initialization with error code VRInitError_Init_PathRegistryNotFound: "Installation path could not be located (110)"!
+ 
+(Filename:  Line: 1028)
+
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics Family (ID=0xa16)
+    Vendor:   Intel
+    VRAM:     1024 MB
+    Driver:   10.18.14.4414
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\UnityEngine.VR.dll (this message is harmless)
+Loading D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\UnityEngine.VR.dll into Unity Child Domain
+- Completed reload, in  0.073 seconds
+Platform assembly: D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\School\Projecten\INF2C-P4\VR-Fire-Safety\BuildProject_Data\Managed\System.dll (this message is harmless)
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initialized touch support.
+VR: OpenVR Error! OpenVR failed initialization with error code VRInitError_Init_PathRegistryNotFound: "Installation path could not be located (110)"!
+ 
+(Filename:  Line: 1028)
+
+VR: OpenVR Error! OpenVR failed initialization with error code VRInitError_Init_PathRegistryNotFound: "Installation path could not be located (110)"!
+ 
+(Filename:  Line: 1028)
+
+UnloadTime: 5.368369 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1878 -> priority: 1 
+  Thread -> id: 15ec -> priority: 1 
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.927029 ms
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 874.
+Total: 0.456065 ms (FindLiveObjects: 0.066937 ms CreateObjectMapping: 0.036592 ms MarkObjects: 0.318621 ms  DeleteObjects: 0.032576 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.004548 ms
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 727.
+Total: 0.398946 ms (FindLiveObjects: 0.065598 ms CreateObjectMapping: 0.041947 ms MarkObjects: 0.259716 ms  DeleteObjects: 0.030791 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.381096 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 877.
+Total: 0.427506 ms (FindLiveObjects: 0.060689 ms CreateObjectMapping: 0.031683 ms MarkObjects: 0.312373 ms  DeleteObjects: 0.022312 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.800123 ms
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 730.
+Total: 0.359230 ms (FindLiveObjects: 0.053996 ms CreateObjectMapping: 0.034807 ms MarkObjects: 0.234280 ms  DeleteObjects: 0.034807 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.423043 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 880.
+Total: 0.427506 ms (FindLiveObjects: 0.047302 ms CreateObjectMapping: 0.030791 ms MarkObjects: 0.324868 ms  DeleteObjects: 0.024097 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.601542 ms
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 733.
+Total: 0.309696 ms (FindLiveObjects: 0.060243 ms CreateObjectMapping: 0.029006 ms MarkObjects: 0.194118 ms  DeleteObjects: 0.024543 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.533713 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 883.
+Total: 0.469453 ms (FindLiveObjects: 0.080770 ms CreateObjectMapping: 0.038377 ms MarkObjects: 0.323530 ms  DeleteObjects: 0.025436 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.623409 ms
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 736.
+Total: 0.312820 ms (FindLiveObjects: 0.062921 ms CreateObjectMapping: 0.031237 ms MarkObjects: 0.193225 ms  DeleteObjects: 0.024097 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.476147 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 886.
+Total: 0.410994 ms (FindLiveObjects: 0.040608 ms CreateObjectMapping: 0.032129 ms MarkObjects: 0.313266 ms  DeleteObjects: 0.024543 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.690346 ms
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.314605 ms (FindLiveObjects: 0.051764 ms CreateObjectMapping: 0.027667 ms MarkObjects: 0.206613 ms  DeleteObjects: 0.027667 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.417688 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 889.
+Total: 0.438662 ms (FindLiveObjects: 0.046409 ms CreateObjectMapping: 0.041947 ms MarkObjects: 0.325315 ms  DeleteObjects: 0.024543 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.810387 ms
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 742.
+Total: 0.295416 ms (FindLiveObjects: 0.056673 ms CreateObjectMapping: 0.028559 ms MarkObjects: 0.185639 ms  DeleteObjects: 0.023651 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.356552 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 892.
+Total: 0.442232 ms (FindLiveObjects: 0.067383 ms CreateObjectMapping: 0.031237 ms MarkObjects: 0.320852 ms  DeleteObjects: 0.022312 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.644382 ms
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 745.
+Total: 0.317728 ms (FindLiveObjects: 0.047748 ms CreateObjectMapping: 0.027667 ms MarkObjects: 0.213753 ms  DeleteObjects: 0.027667 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.415903 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 895.
+Total: 0.617607 ms (FindLiveObjects: 0.085679 ms CreateObjectMapping: 0.045071 ms MarkObjects: 0.454280 ms  DeleteObjects: 0.031237 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.621624 ms
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 748.
+Total: 0.360568 ms (FindLiveObjects: 0.048641 ms CreateObjectMapping: 0.029006 ms MarkObjects: 0.255254 ms  DeleteObjects: 0.026774 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.448033 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 725.
+Total: 0.306126 ms (FindLiveObjects: 0.033468 ms CreateObjectMapping: 0.027667 ms MarkObjects: 0.205720 ms  DeleteObjects: 0.038377 ms)
+
